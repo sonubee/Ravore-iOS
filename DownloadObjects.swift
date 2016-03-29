@@ -1,140 +1,17 @@
-
-var braceletSelected=""
-var braceletChosen = ObjectBracelet()
-var allBracelets = [ObjectBracelet]()
-var registeredBracelets = [ObjectBracelet]()
-var allPics = [ObjectProfilePic]()
-var allOrders = [ObjectOrders]()
-var allUsers = [ObjectAllUsers]()
-var allTokens = [ObjectToken]()
-var allIDs = [String]()
-var foundToken = false
-var braceletKeys = [String:String]()
-var gcmTokens = [String:String]()
-let UDID = UIDevice.currentDevice().identifierForVendor!.UUIDString
-var cameFromHome = true
-
-var shortDate : String {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM/dd/yy"
-    return dateFormatter.stringFromDate(NSDate())
-}
-
-let productionTokenBT = "production_x75kb8hy_69ppkf6h8fqh9cxb"
-let sandboxTokenBT = "sandbox_7v37j3pm_9j46c9m8t3mjfwwq"
-
-let productionHerokuURL = "https://sheltered-wave-14675.herokuapp.com/"
-let sandboxHerokuURL = "https://hidden-river-58763.herokuapp.com/"
-
-let sandboxFirebase = "https://testravore.firebaseio.com/"
-let productionFirebase = "https://liveravore.firebaseio.com/"
-
-var useHeroku = ""
-var useBT = ""
-var useFirebase = ""
-
-let devStatus = "sandbox"
-
+//
+//  DownloadObjects.swift
+//  Ravore2
+//
+//  Created by Admin on 3/28/16.
+//  Copyright © 2016 G LLC. All rights reserved.
+//
+/*
 import UIKit
-import PKHUD
 import Firebase
 
-class FirstViewController: UIViewController, UITextFieldDelegate {
+class DownloadObjects : FirstViewController {
 
-    @IBOutlet weak var braceletIdFromLogin: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setup()
-        downloadObjects()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        cameFromHome=true
-         self.navigationController?.navigationBarHidden = true
-    }
-    
-    @IBAction func giverLogin(sender: UIButton) {
-        self.braceletIdFromLogin.resignFirstResponder()
-        braceletSelected=String(braceletIdFromLogin.text!)
-        braceletIdFromLogin.text = ""
-        
-        for bracelet : ObjectBracelet in allBracelets {
-            if bracelet.braceletId == braceletSelected {
-                braceletChosen = bracelet;}}
-        
-        var found = false
-        for braceletIdFromLogin: ObjectBracelet in allBracelets {
-            if (braceletIdFromLogin.braceletId==braceletSelected){
-                
-                found=true
-                
-                if (braceletIdFromLogin.giverId == UDID){
-                    self.performSegueWithIdentifier("goToAllMessages", sender: self)
-                    
-                }
-                    
-                else if (braceletIdFromLogin.receiverId == UDID){
-                    Toast.makeToast("You Are Registered as the Receiver").show()
-                }
-                    
-                    
-                else if (braceletIdFromLogin.giverId == "NA" && braceletIdFromLogin.receiverId == "NA"){
-                    var firebaseKey : String!
-                    firebaseKey = braceletKeys[braceletSelected]
-                    
-                    let postGiver = Firebase(url:useFirebase+"Bracelets")
-                    
-                    let postNewGiver = ["giverId": UDID, "dateRegistered": shortDate, "receiverId" : "NA" , "dateCreated" : braceletIdFromLogin.dateCreated, "braceletId" : braceletIdFromLogin.braceletId, "dateReceived" : "NA"]
-                    postGiver.childByAppendingPath(firebaseKey).setValue(postNewGiver)
-                
-                    registeredBracelets.append(braceletIdFromLogin)
-                    
-                    self.performSegueWithIdentifier("goToAllMessages", sender: self)
-                }
-                    
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId == "NA") {
-                    Toast.makeToast("There's already a Giver Registered. Are you the Receiver?").show()
-                }
-                    
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId != "NA"){
-                    Toast.makeToast("Bracelet Already Taken!").show()
-                }
-            }
-            
-        }
-        
-        if (!found){
-            Toast.makeToast("Bracelet Doesn't Exist!").show()
-        }
-    }
-    
-    @IBAction func receiverLogin(sender: UIButton) {
-        self.braceletIdFromLogin.resignFirstResponder()
-        braceletSelected = braceletIdFromLogin.text!
-        braceletIdFromLogin.text = ""
-        
-        
-        let segueString = AddReceiver().overallProcess(braceletSelected)
-        if segueString != "" {
-            self.performSegueWithIdentifier(segueString, sender: self)
-            
-        }
-       
-    }
-    
-        
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    func downloadObjects() {
+    func downloadObjects(){
         
         HUD.show(.Progress)
         
@@ -303,46 +180,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             
-            
+       
         })
-
     }
-    
-    func setup(){
-        //SendPush.methodToTest("message", receiver: "test")
-        
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0;
-        
-        print("before file--------")
-        if let resourceUrl = NSBundle.mainBundle().URLForResource("apns-dev-cert", withExtension: "p12") {
-            if NSFileManager.defaultManager().fileExistsAtPath(resourceUrl.path!) {
-                print("file found!!!!!")
-            }
-        }
-        
-        Localytics.tagEvent("iOS Localytics")
-        Localytics.setCustomerId(UDID)
-        
-        //self.navigationController?.navigationBarHidden = true
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        if (devStatus == "sandbox"){
-            useHeroku = productionHerokuURL
-            useBT = sandboxTokenBT
-            useFirebase = sandboxFirebase
-        }
-        
-        if (devStatus == "production"){
-            useHeroku = productionHerokuURL
-            useBT = productionTokenBT
-            useFirebase = productionFirebase
-        }
-        
-        self.braceletIdFromLogin.delegate=self
-        braceletIdFromLogin.keyboardType = UIKeyboardType.NumberPad
-        
-    }
-
 
 }
-
+*/

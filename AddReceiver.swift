@@ -11,6 +11,44 @@ import Firebase
 
 class AddReceiver {
     
+    func overallProcess(braceletId : String) -> String{
+        
+        var tempString = ""
+        
+        if (AddReceiver().braceletExistence(braceletSelected)) {
+            braceletChosen = AddReceiver().getBracelet(braceletSelected)
+            if (braceletChosen.receiverId == UDID){
+                //self.performSegueWithIdentifier("goToAllMessages", sender: self)
+                tempString = "goToAllMessages"
+            }
+                
+            else if (braceletChosen.giverId == UDID){
+                Toast.makeToast("You Are Registered as the Giver").show()
+            }
+                
+            else if (braceletChosen.giverId != "NA" && braceletChosen.receiverId == "NA"){
+                AddReceiver().addBracelet(braceletSelected)
+                //self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)
+                tempString = "goToAllMessages"
+            }
+                
+            else if (braceletChosen.giverId == "NA" && braceletChosen.receiverId == "NA") {
+                Toast.makeToast("Not Found").show()
+                
+            }
+                
+            else if (braceletChosen.giverId != "NA" && braceletChosen.receiverId != "NA"){
+                Toast.makeToast("Bracelet Already Taken!").show()
+            }
+        }
+            
+        else {
+            Toast.makeToast("Bracelet Doesn't Exist!").show()
+        }
+        
+        return tempString
+    }
+    
     func braceletExistence(braceletId : String) -> Bool {
         var found = false
         

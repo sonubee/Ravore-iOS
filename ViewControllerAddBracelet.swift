@@ -84,80 +84,26 @@ class ViewControllerAddBracelet: UIViewController, UITextFieldDelegate {
         braceletSelected = addBraceletField.text!
         self.addBraceletField.resignFirstResponder()
         addBraceletField.text = ""
-    
-        var found = false
-        for braceletIdFromLogin: ObjectBracelet in allBracelets {
-            if (braceletIdFromLogin.braceletId==braceletSelected){
-                found=true
-                print("Found Bracelet!")
-                
-                
-                if (braceletIdFromLogin.receiverId == UDID){
-                    Toast.makeToast("You Are Already Registered as the Receiver!").show()
-                }
-                    
-                    
-                    
-                else if (braceletIdFromLogin.giverId == UDID){
-                    print("HERE!@!")
-                    Toast.makeToast("You Are Registered as the Giver").show()
-                }
-                    
-                    
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId == "NA"){
-                    var firebaseKey : String!
-                    firebaseKey = braceletKeys[braceletSelected]
-                    
-                    let postReceiver = Firebase(url:useFirebase+"Bracelets")
-                    
-                    var shortDate : String {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        return dateFormatter.stringFromDate(NSDate())
-                    }
-                    
-                    print(shortDate)
-                    
-                    postReceiver.childByAppendingPath(firebaseKey).childByAppendingPath("receiverId").setValue(UDID)
-                    postReceiver.childByAppendingPath(firebaseKey).childByAppendingPath("dateReceived").setValue(shortDate)
-                    
-                     registeredBracelets.append(braceletIdFromLogin)
-                    
-                    SendPush.methodToTest("Bracelet \(braceletSelected) Has Been Added!", messageReceiverId: braceletIdFromLogin.giverId, title: braceletSelected, type: "addition", braceletId: braceletSelected)
-                    
-                    self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)
-                }
-                    
-                else if (braceletIdFromLogin.giverId == "NA" && braceletIdFromLogin.receiverId == "NA") {
-                    Toast.makeToast("There's No Giver Registered. Is that you?").show()
-                    
-                }
-                    
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId != "NA"){
-                    Toast.makeToast("Bracelet Already Taken!").show()
-                }
+        
+        let segueString = AddReceiver().overallProcess(braceletSelected)
+        if segueString != "" {
+            
+            if segueString == "goToAllMessages" {
+                self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)
+            }
+            
+            else {
+                self.performSegueWithIdentifier(segueString, sender: self)
             }
             
             
         }
-        if (!found){
-            Toast.makeToast("Bracelet Doesn't Exist!").show()
-        }
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
