@@ -312,9 +312,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
             
             allUsers.append(addUser)
             
-            //let addProfile = ObjectProfilePic(userId: userId, url: url, urlVersion: urlVersion, fullPhotoUrl: fullPhotoUrl, fullPhotoVersion: fullPhotoVersion)
-            
-            //allPics.append(addProfile)
         })
         
         //let postOrder = Firebase(url:useFirebase+"Orders")
@@ -372,6 +369,37 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
                     print("TOKEN FOUND ON SERVER")
                 }
             }
+        })
+        
+        getGCMTokens.observeEventType(.ChildChanged, withBlock: { snapshot in
+            
+            let os = snapshot.value.objectForKey("os") as! String
+            let token = snapshot.value.objectForKey("token") as! String
+            let userId = snapshot.value.objectForKey("userId") as! String
+            
+            let downloadToken = ObjectToken(os: os, token: token, userId: userId)
+            
+            for (var i = 0; i < allTokens.count ; i++) {
+                if (allTokens[i].userId == downloadToken.userId){
+                    allTokens[i] = downloadToken
+                }
+            }
+            
+            /*
+            allTokens.append(downloadToken)
+            
+            print("--Searching Tokens on Firebase--")
+            print("UserId: ", userId)
+            print("Token on Firebase: ", token)
+            print("This device Token: ", deviceToken)
+            
+            if (deviceToken != "not set yet") {
+                if token == deviceToken {
+                    foundToken = true
+                    print("TOKEN FOUND ON SERVER")
+                }
+            }
+            */
         })
     }
     
