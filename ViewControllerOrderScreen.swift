@@ -120,21 +120,7 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
         let sendBody = "orderAmount=\(totalPrice)"
         
         SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: sendBody)
-        
- /*
-        let herokuURL = NSURL(string: "\(useHeroku)OrderMadeEmail")!
-        let request = NSMutableURLRequest(URL: herokuURL)
-        request.HTTPBody = sendBody.dataUsingEncoding(NSUTF8StringEncoding)
-        request.HTTPMethod = "POST"
-        
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            // TODO: Handle success or failure
-            print("AFTER POST")
-            print("Data: ", data)
-            print("Response: ", response)
-            print("Error: ", error)
-            }.resume()
-*/
+    
     }
 
     /// Informs the delegate when the user has decided to cancel out of the Drop-in payment form.
@@ -153,43 +139,10 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
         let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)"
         
         SendServerRequest.sendRequest("\(useHeroku)checkout", body: sendBody)
-        
-     /*
-        let herokuUrl = NSURL(string: "\(useHeroku)checkout")!
-        let request = NSMutableURLRequest(URL: herokuUrl)
-        request.HTTPBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)".dataUsingEncoding(NSUTF8StringEncoding)
-        request.HTTPMethod = "POST"
-        
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            // TODO: Handle success or failure
-            print("AFTER POST")
-            print("Data: ", data)
-            print("Response: ", response)
-            print("Error: ", error)
-            }.resume()
-*/
+   
     }
     
-    func wakeUpServer () {
-        
-        //let sendBody = "orderAmount=\(totalPrice)"
-        
-        SendServerRequest.sendRequest("\(useHeroku)hello", body: "")
-        
-        /*
-        let paymentURL = NSURL(string: "\(useHeroku)hello")!
-        let request = NSMutableURLRequest(URL: paymentURL)
-        request.HTTPMethod = "GET"
-        
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            // TODO: Handle success or failure
-            print("AFTER POST")
-            print("Data: ", data)
-            print("Response: ", response)
-            print("Error: ", error)
-            }.resume()
-*/
-    }
+    func wakeUpServer () {SendServerRequest.sendRequest("\(useHeroku)hello", body: "")}
     
     
     func userDidCancelPayment() {

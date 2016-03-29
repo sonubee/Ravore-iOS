@@ -270,10 +270,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0;
         
-        print("before file--------")
         if let resourceUrl = NSBundle.mainBundle().URLForResource("apns-dev-cert", withExtension: "p12") {
             if NSFileManager.defaultManager().fileExistsAtPath(resourceUrl.path!) {
-                print("file found!!!!!")
             }
         }
         
