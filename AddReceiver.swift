@@ -15,10 +15,9 @@ class AddReceiver {
         
         var tempString = ""
         
-        if (AddReceiver().braceletExistence(braceletSelected)) {
-            braceletChosen = AddReceiver().getBracelet(braceletSelected)
+        if (BraceletInfo().braceletExistence(braceletSelected)) {
+            braceletChosen = BraceletInfo().getBracelet(braceletSelected)
             if (braceletChosen.receiverId == UDID){
-                //self.performSegueWithIdentifier("goToAllMessages", sender: self)
                 tempString = "goToAllMessages"
             }
                 
@@ -28,7 +27,6 @@ class AddReceiver {
                 
             else if (braceletChosen.giverId != "NA" && braceletChosen.receiverId == "NA"){
                 AddReceiver().addBracelet(braceletSelected)
-                //self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)
                 tempString = "goToAllMessages"
             }
                 
@@ -49,32 +47,6 @@ class AddReceiver {
         return tempString
     }
     
-    func braceletExistence(braceletId : String) -> Bool {
-        var found = false
-        
-        for bracelet : ObjectBracelet in allBracelets {
-            if bracelet.braceletId == braceletId {
-                found = true
-            }
-            
-        }
-        return found
-    }
-    
-    
-    func getBracelet(braceletId : String) -> ObjectBracelet {
-        //var found = false
-        var tempBracelet = ObjectBracelet()
-        
-        for bracelet : ObjectBracelet in allBracelets {
-            if bracelet.braceletId == braceletId {
-                braceletChosen = bracelet
-                tempBracelet = bracelet
-            }
-            
-        }
-        return tempBracelet
-    }
     
     func addBracelet (braceletId : String) {
         var firebaseKey : String!

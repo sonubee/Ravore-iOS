@@ -65,6 +65,12 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         braceletSelected=String(braceletIdFromLogin.text!)
         braceletIdFromLogin.text = ""
         
+        let segueString = AddGiver().overallProcess(braceletSelected)
+        if segueString != "" {
+            self.performSegueWithIdentifier(segueString, sender: self)
+        }
+        /*
+        
         for bracelet : ObjectBracelet in allBracelets {
             if bracelet.braceletId == braceletSelected {
                 braceletChosen = bracelet;}}
@@ -113,6 +119,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         if (!found){
             Toast.makeToast("Bracelet Doesn't Exist!").show()
         }
+*/
     }
     
     @IBAction func receiverLogin(sender: UIButton) {
