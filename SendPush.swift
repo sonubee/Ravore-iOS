@@ -27,20 +27,9 @@ class SendPush: NSObject {
             }
         }
         
-        //print("------from SendPush method + \(os)")
+        let sendBody = "os=\(receiverOs)&to=\(messageReceiver)&title=\(title)&message=\(message)&type=\(type)=\(braceletSelected)&braceletId=\(braceletId)"
         
-        let sendTokenURL = NSURL(string: "https://sheltered-wave-14675.herokuapp.com/sendPush")!
-        let request = NSMutableURLRequest(URL: sendTokenURL)
-        request.HTTPBody = "os=\(receiverOs)&to=\(messageReceiver)&title=\(title)&message=\(message)&type=\(type)=\(braceletSelected)&braceletId=\(braceletId)".dataUsingEncoding(NSUTF8StringEncoding)
-        request.HTTPMethod = "POST"
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-            // TODO: Handle success or failure
-            print("AFTER POST")
-            print("Data: ", data)
-            print("Response: ", response)
-            print("Error: ", error)
-            }.resume()
-        
+        SendServerRequest.sendRequest("\(useHeroku)sendPush", body: sendBody)
     }
 
 }

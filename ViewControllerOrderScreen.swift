@@ -105,15 +105,38 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
         // Send payment method nonce to your server for processing
         putOrderOnFirebase()
         postNonceToServer(paymentMethodNonce.nonce)
+        
+        sendEmailToGurinder()
+        
         dismissViewControllerAnimated(true, completion: nil)
         //navigationController?.popViewControllerAnimated(true)
         navigationController?.popToRootViewControllerAnimated(true)
         //self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
-       
-        
     }
     
+    func sendEmailToGurinder(){
+        
+        let sendBody = "orderAmount=\(totalPrice)"
+        
+        SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: sendBody)
+        
+ /*
+        let herokuURL = NSURL(string: "\(useHeroku)OrderMadeEmail")!
+        let request = NSMutableURLRequest(URL: herokuURL)
+        request.HTTPBody = sendBody.dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPMethod = "POST"
+        
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+            // TODO: Handle success or failure
+            print("AFTER POST")
+            print("Data: ", data)
+            print("Response: ", response)
+            print("Error: ", error)
+            }.resume()
+*/
+    }
+
     /// Informs the delegate when the user has decided to cancel out of the Drop-in payment form.
     ///
     /// Drop-in handles its own error cases, so this cancelation is user initiated and
@@ -126,8 +149,14 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     }
     
     func postNonceToServer(paymentMethodNonce: String) {
-        let paymentURL = NSURL(string: useHeroku)!
-        let request = NSMutableURLRequest(URL: paymentURL)
+        
+        let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)"
+        
+        SendServerRequest.sendRequest("\(useHeroku)checkout", body: sendBody)
+        
+     /*
+        let herokuUrl = NSURL(string: "\(useHeroku)checkout")!
+        let request = NSMutableURLRequest(URL: herokuUrl)
         request.HTTPBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)".dataUsingEncoding(NSUTF8StringEncoding)
         request.HTTPMethod = "POST"
         
@@ -138,10 +167,17 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
             print("Response: ", response)
             print("Error: ", error)
             }.resume()
+*/
     }
     
     func wakeUpServer () {
-        let paymentURL = NSURL(string: "https://sheltered-wave-14675.herokuapp.com/hello")!
+        
+        //let sendBody = "orderAmount=\(totalPrice)"
+        
+        SendServerRequest.sendRequest("\(useHeroku)hello", body: "")
+        
+        /*
+        let paymentURL = NSURL(string: "\(useHeroku)hello")!
         let request = NSMutableURLRequest(URL: paymentURL)
         request.HTTPMethod = "GET"
         
@@ -152,6 +188,7 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
             print("Response: ", response)
             print("Error: ", error)
             }.resume()
+*/
     }
     
     

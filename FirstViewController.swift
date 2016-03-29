@@ -27,8 +27,8 @@ var shortDate : String {
 let productionTokenBT = "production_x75kb8hy_69ppkf6h8fqh9cxb"
 let sandboxTokenBT = "sandbox_7v37j3pm_9j46c9m8t3mjfwwq"
 
-let productionHerokuURL = "https://sheltered-wave-14675.herokuapp.com/checkout"
-let sandboxHerokuURL = "https://hidden-river-58763.herokuapp.com/checkout"
+let productionHerokuURL = "https://sheltered-wave-14675.herokuapp.com/"
+let sandboxHerokuURL = "https://hidden-river-58763.herokuapp.com/"
 
 let sandboxFirebase = "https://testravore.firebaseio.com/"
 let productionFirebase = "https://liveravore.firebaseio.com/"
