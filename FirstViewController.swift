@@ -155,67 +155,40 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func receiverLogin(sender: UIButton) {
         self.braceletIdFromLogin.resignFirstResponder()
-        braceletSelected=String(braceletIdFromLogin.text!)
+        braceletSelected = braceletIdFromLogin.text!
         braceletIdFromLogin.text = ""
+    
+        print("came to receiver login")
         
-        for bracelet : ObjectBracelet in allBracelets {
-            if bracelet.braceletId == braceletSelected {
-                braceletChosen = bracelet;}}
-        
-        var found = false
-        for braceletIdFromLogin: ObjectBracelet in allBracelets {
-            if (braceletIdFromLogin.braceletId==braceletSelected){
-                found=true
-               
+        if (AddReceiver().braceletExistence(braceletSelected)) {
+            braceletChosen = AddReceiver().getBracelet(braceletSelected)
+            print("bracelet does exist")
+            if (braceletChosen.receiverId == UDID){
+                self.performSegueWithIdentifier("goToAllMessages", sender: self)
+            }
+            
+            else if (braceletChosen.giverId == UDID){
+                Toast.makeToast("You Are Registered as the Giver").show()
+            }
+            
+            else if (braceletChosen.giverId != "NA" && braceletChosen.receiverId == "NA"){
+                AddReceiver().addBracelet(braceletSelected)
+                self.performSegueWithIdentifier("goToAllMessages", sender: self)
+            }
                 
-                if (braceletIdFromLogin.receiverId == UDID){
-                    self.performSegueWithIdentifier("goToAllMessages", sender: self)
-                }
-               
-                else if (braceletIdFromLogin.giverId == UDID){
-                    
-                    Toast.makeToast("You Are Registered as the Giver").show()
-                }
+            else if (braceletChosen.giverId == "NA" && braceletChosen.receiverId == "NA") {
+                Toast.makeToast("There's No Giver Registered. Is that you?").show()
                 
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId == "NA"){
-                    var firebaseKey : String!
-                    firebaseKey = braceletKeys[braceletSelected]
-                    
-                    let postReceiver = Firebase(url:useFirebase+"Bracelets")
-                    
-                    var shortDate : String {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        return dateFormatter.stringFromDate(NSDate())
-                    }
-                    
-                 
-                    
-                    let postNewReceiver = ["giverId": braceletIdFromLogin.giverId, "dateRegistered": braceletIdFromLogin.dateRegistered, "receiverId" : UDID , "dateCreated" : braceletIdFromLogin.dateCreated, "braceletId" : braceletIdFromLogin.braceletId, "dateReceived" : shortDate]
-                    postReceiver.childByAppendingPath(firebaseKey).setValue(postNewReceiver)
-
-                     registeredBracelets.append(braceletIdFromLogin)
-                    
-                    SendPush.methodToTest("Bracelet \(braceletSelected) Has Been Added!", messageReceiverId: braceletIdFromLogin.giverId, title: braceletSelected, type: "addition", braceletId: braceletSelected)
+            }
                 
-                    self.performSegueWithIdentifier("goToAllMessages", sender: self)
-                }
-                    
-                else if (braceletIdFromLogin.giverId == "NA" && braceletIdFromLogin.receiverId == "NA") {
-                    Toast.makeToast("There's No Giver Registered. Is that you?").show()
-                    
-                }
-                    
-                else if (braceletIdFromLogin.giverId != "NA" && braceletIdFromLogin.receiverId != "NA"){
-                    Toast.makeToast("Bracelet Already Taken!").show()
-                }
+            else if (braceletChosen.giverId != "NA" && braceletChosen.receiverId != "NA"){
+                Toast.makeToast("Bracelet Already Taken!").show()
             }
         }
-        if (!found){
-           
+        
+        else {
             Toast.makeToast("Bracelet Doesn't Exist!").show()
         }
-        
     }
     
     func downloadObjects(){
