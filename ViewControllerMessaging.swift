@@ -116,6 +116,8 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         giverImage.image = resizedAndMaskedImage
         receiverImage.image = resizedAndMaskedImage
         
+        print ("before setting images")
+        
         
         for (var i=0; i < allBracelets.count; i++){
             if (braceletSelected == allBracelets[i].braceletId){
@@ -129,23 +131,39 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
                     
                     giverImage.image = resizedAndMaskedImage
                     
+                    
                     for profile : ObjectProfilePic in allPics {
                         if profile.userId == allBracelets[i].receiverId {
+                            print("inside if")
                             globalReceiverId = profile.userId
                             messageReceiver = profile.userId
                             receiverImage.kf_setImageWithURL(NSURL(string: profile.url)!)
                             
+                            print ("heeeeeee")
+                            
                             var tempImage : UIImage
-                            tempImage = receiverImage.image!
                             
-                            let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                            if receiverImage.image != nil{
+                                
+                                tempImage = receiverImage.image!
+                                let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                                
+                                receiverImage.image = resizedAndMaskedImage
+                            }
                             
-                            receiverImage.image = resizedAndMaskedImage
+                            print ("22")
+                            
+                       
+                            
                         }
                     }
+                    
+                    print ("after all but inside loop")
                 }
             }
         }
+        
+        print ("middle of images")
         
         
         for (var i=0; i < allBracelets.count; i++){
@@ -169,16 +187,24 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
                             giverImage.kf_setImageWithURL(NSURL(string: profile.url)!)
                             
                             var tempImage : UIImage
-                            tempImage = giverImage.image!
+                     
                             
-                            let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                            if giverImage.image != nil {
+                                
+                                tempImage = giverImage.image!
+                                
+                                let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                                       giverImage.image = resizedAndMaskedImage
+                            }
                             
-                            giverImage.image = resizedAndMaskedImage
+                     
                         }
                     }
                 }
             }
         }
+        
+          print("after all images")
         
 
         
@@ -188,6 +214,9 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
         self.navigationItem.leftBarButtonItem = newBackButton;
         // Do any additional setup after loading the view.
+        
+      
+        print("before end")
     }
     
     func giverImageTapped(img: AnyObject)
@@ -404,7 +433,8 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Default")
-        cell.textLabel!.text = arrayOfMessages[indexPath.row].message
+        print("before question")
+        cell.textLabel?.text = arrayOfMessages[indexPath.row].message
         cell.backgroundColor = UIColor.blackColor()
         
         cell.textLabel?.font = UIFont.boldSystemFontOfSize(13)
@@ -422,8 +452,12 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
+        print("after question")
+        
         return cell
     }
+    
+    
     
     func downloadObjects(){
         let braceletGo = braceletSelected
@@ -449,6 +483,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
             self.tableView.scrollToRowAtIndexPath(lastIndex, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
             
         })
+
     }
     
     func saveImage (image: UIImage, path: String ) -> Bool{
