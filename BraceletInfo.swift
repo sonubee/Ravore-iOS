@@ -37,4 +37,19 @@ class BraceletInfo {
         }
         return tempBracelet
     }
+    
+    func amIGiver (braceletId : String) -> Bool {
+        
+        var found = false
+        
+        for (var i=0; i < allBracelets.count; i++){
+            if (braceletId == allBracelets[i].braceletId){
+                if (allBracelets[i].giverId == UDID){
+                    found = true
+                }
+            }
+        }
+        
+        return found
+    }
 }

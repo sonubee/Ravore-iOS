@@ -1,11 +1,3 @@
-//
-//  AddGiver.swift
-//  Ravore2
-//
-//  Created by Admin on 3/28/16.
-//  Copyright © 2016 G LLC. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Firebase
