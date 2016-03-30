@@ -819,8 +819,7 @@
                                     <color key="titleColor" red="0.2468887827" green="0.96954770469999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="purchase:" destination="NcK-x9-kTi" eventType="touchUpInside" id="uyH-cR-99k"/>
-                                    <action selector="purchase:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="zch-Id-Ypq"/>
+                                    <action selector="makePurchase:" destination="NcK-x9-kTi" eventType="touchUpInside" id="AF1-Tg-2Gw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fJ-pz-DYN">
@@ -830,7 +829,7 @@
                                     <color key="titleColor" red="0.54578840774363291" green="1" blue="0.9510746587710146" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="amountButton:" destination="NcK-x9-kTi" eventType="touchUpInside" id="MSj-QH-SsQ"/>
+                                    <action selector="makePurchase:" destination="NcK-x9-kTi" eventType="touchUpInside" id="KKG-pS-JEI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aD4-fX-hdX">

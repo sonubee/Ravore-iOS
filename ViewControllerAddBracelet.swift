@@ -1,10 +1,3 @@
-//
-//  ViewControllerAddBracelet.swift
-//  Ravore2
-//
-//  Created by Admin on 3/1/16.
-//  Copyright © 2016 G LLC. All rights reserved.
-//
 
 import UIKit
 import Firebase

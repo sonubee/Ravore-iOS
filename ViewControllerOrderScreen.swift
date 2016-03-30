@@ -9,7 +9,7 @@ import UIKit
 
 class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegate {
 
-    var braintreeClient: BTAPIClient!
+   var braintreeClient: BTAPIClient!
     
     @IBOutlet weak var fullName: UITextField!
     @IBOutlet weak var suiteApt: UITextField!
@@ -34,45 +34,50 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
         // Dispose of any resources that can be recreated.
     }
     
-  
-    @IBAction func purchase(sender: UIButton) {
+    func dropInViewController(viewController: BTDropInViewController, didSucceedWithTokenization paymentMethodNonce: BTPaymentMethodNonce){
+        //Toast.makeToast("Your order has been placed and will arrive in 5 Days").show()
+        purchaseMade = true
+        // Send payment method nonce to your server for processing
+        putOrderOnFirebase()
         
-        let name = fullName.text!
-        let suiteA = suiteApt.text!
+        postNonceToServer(paymentMethodNonce.nonce)
         
-        if name == "" {
-            Toast.makeToast("Please Enter Your Name").show()
-        }
+        sendEmailToGurinder()
         
-        else {
-            print(name, address, suiteA)
-            
-            self.fullName.resignFirstResponder()
-            self.suiteApt.resignFirstResponder()
-            
-            braintreeClient = BTAPIClient(authorization: useBT)
-            
-            let dropInViewController = BTDropInViewController(APIClient: braintreeClient)
-            
-            dropInViewController.delegate = self
-            
-            dropInViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: UIBarButtonSystemItem.Cancel,
-                target: self, action: "userDidCancelPayment")
-            let navigationController = UINavigationController(rootViewController: dropInViewController)
-            presentViewController(navigationController, animated: true, completion: nil)
-        }
+        dismissViewControllerAnimated(true, completion: nil)
+        //navigationController?.popViewControllerAnimated(true)
+        navigationController?.popToRootViewControllerAnimated(true)
+        //self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
-       
+        if devStatus == "production"{
+            SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: "orderAmount=\(totalPrice)")}
+        
     }
     
-    @IBAction func amountButton(sender: UIButton) {
+    func dropInViewControllerDidCancel(viewController: BTDropInViewController){
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func userDidCancelPayment() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func postNonceToServer(paymentMethodNonce: String) {
+        
+        let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)"
+        
+        SendServerRequest.sendRequest("\(useHeroku)checkout", body: sendBody)
+        
+        print("went to checkout")
+        
+    }
+    
+    @IBAction func makePurchase(sender: UIButton) {
         let name = fullName.text!
         let suiteA = suiteApt.text!
         
         if name == "" {
             Toast.makeToast("Please Enter Your Name").show()
-            Toast.makeToast("There's already a Giver Registered. Are you the Receiver?").show()
         }
             
         else if address == "" {
@@ -96,59 +101,20 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
                 target: self, action: "userDidCancelPayment")
             let navigationController = UINavigationController(rootViewController: dropInViewController)
             presentViewController(navigationController, animated: true, completion: nil)
-        }    }
-    
-    
-    func dropInViewController(viewController: BTDropInViewController, didSucceedWithTokenization paymentMethodNonce: BTPaymentMethodNonce){
-        //Toast.makeToast("Your order has been placed and will arrive in 5 Days").show()
-        purchaseMade = true
-        // Send payment method nonce to your server for processing
-        putOrderOnFirebase()
-        postNonceToServer(paymentMethodNonce.nonce)
-        
-        sendEmailToGurinder()
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        //navigationController?.popViewControllerAnimated(true)
-        navigationController?.popToRootViewControllerAnimated(true)
-        //self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
         
     }
     
     func sendEmailToGurinder(){
         
         if devStatus == "production"{
-            let sendBody = "orderAmount=\(totalPrice)"
-            SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: sendBody)
-        }
-    }
-
-    /// Informs the delegate when the user has decided to cancel out of the Drop-in payment form.
-    ///
-    /// Drop-in handles its own error cases, so this cancelation is user initiated and
-    /// irreversable. Upon receiving this message, you should dismiss Drop-in.
-    ///
-    /// @param viewController The Drop-in view controller informing its delegate of failure or cancelation.
-    
-    func dropInViewControllerDidCancel(viewController: BTDropInViewController){
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func postNonceToServer(paymentMethodNonce: String) {
-        
-        let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)"
-        
-        SendServerRequest.sendRequest("\(useHeroku)checkout", body: sendBody)
-   
+            SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: "orderAmount=\(totalPrice)")}
     }
     
     func wakeUpServer () {SendServerRequest.sendRequest("\(useHeroku)hello", body: "")}
     
     
-    func userDidCancelPayment() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+ 
     @IBAction func places(sender: UIButton) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
