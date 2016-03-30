@@ -241,6 +241,22 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
                 
                 self.giverImage.image = UIImage(named: "anon")
                 
+                let forUpload = UIImagePNGRepresentation(UIImage(named: "anon")!) as NSData!
+                let uploader = CLUploader(self.Cloudinary, delegate: nil)
+                
+                let transformationsSmallPic = CLTransformation()
+                
+                transformationsSmallPic.param("width", value: 70)
+                transformationsSmallPic.param("height", value: 70)
+                transformationsSmallPic.param("crop" , value: "fill")
+                
+                uploader.upload(forUpload, options: ["public_id":UDID, "transformation":transformationsSmallPic],
+                    withCompletion:self.onCloudinaryCompletion, andProgress:self.onCloudinaryProgress)
+                
+                uploader.upload(forUpload, options: ["public_id":"\(UDID)full"],
+                    
+                    withCompletion:self.onCloudinaryCompletion, andProgress:self.onCloudinaryProgress)
+                
             }))
             
             alert.addAction(UIAlertAction(title: "Choose from Library", style: UIAlertActionStyle.Default, handler: { action in
@@ -306,6 +322,23 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
             alert.addAction(UIAlertAction(title: "Delete Photo", style: UIAlertActionStyle.Default, handler: { action in
                 whichImage = UDID
                 self.receiverImage.image = UIImage(named: "anon")
+                
+                let forUpload = UIImagePNGRepresentation(UIImage(named: "anon")!) as NSData!
+                let uploader = CLUploader(self.Cloudinary, delegate: nil)
+                
+                let transformationsSmallPic = CLTransformation()
+                
+                transformationsSmallPic.param("width", value: 70)
+                transformationsSmallPic.param("height", value: 70)
+                transformationsSmallPic.param("crop" , value: "fill")
+                
+                uploader.upload(forUpload, options: ["public_id":UDID, "transformation":transformationsSmallPic],
+                    withCompletion:self.onCloudinaryCompletion, andProgress:self.onCloudinaryProgress)
+                
+                uploader.upload(forUpload, options: ["public_id":"\(UDID)full"],
+                    
+                    withCompletion:self.onCloudinaryCompletion, andProgress:self.onCloudinaryProgress)
+                
                 
             }))
             
@@ -621,7 +654,6 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         
         braceletRef.childByAutoId().setValue(theMessage)
         messageBox.text = ""
-        
         
         
         sendPush(message)

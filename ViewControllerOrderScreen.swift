@@ -117,10 +117,10 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     
     func sendEmailToGurinder(){
         
-        let sendBody = "orderAmount=\(totalPrice)"
-        
-        SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: sendBody)
-    
+        if devStatus == "production"{
+            let sendBody = "orderAmount=\(totalPrice)"
+            SendServerRequest.sendRequest("\(useHeroku)OrderMadeEmail", body: sendBody)
+        }
     }
 
     /// Informs the delegate when the user has decided to cancel out of the Drop-in payment form.

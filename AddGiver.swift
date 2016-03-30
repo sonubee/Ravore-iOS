@@ -56,6 +56,11 @@ class AddGiver {
         let postNewGiver = ["giverId": UDID, "dateRegistered": shortDate, "receiverId" : "NA" , "dateCreated" : braceletChosen.dateCreated, "braceletId" : braceletChosen.braceletId, "dateReceived" : "NA"]
         postGiver.childByAppendingPath(firebaseKey).setValue(postNewGiver)
         
+        //if devStatus == "production"{
+            let sendBody = "braceletId=\(braceletId)"
+            SendServerRequest.sendRequest("\(useHeroku)BraceletAddedEmail", body: sendBody)
+        //}
+        
         registeredBracelets.append(braceletChosen)
     }
     

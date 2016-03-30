@@ -33,7 +33,7 @@ var useHeroku = ""
 var useBT = ""
 var useFirebase = ""
 
-let devStatus = "sandbox"
+let devStatus = "production"
 
 import UIKit
 import PKHUD
