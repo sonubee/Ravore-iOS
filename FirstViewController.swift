@@ -195,7 +195,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         let getAllOrders = Firebase(url:useFirebase+"Orders")
         
         //let getAllOrders = Firebase(url:useFirebase+"OrdersTest")
-        
+  
         getAllOrders.observeEventType(.ChildAdded, withBlock: { snapshot in
             
             let address = snapshot.value.objectForKey("address") as! String
@@ -219,7 +219,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
                 allOrders.append(downloadOrder)
             }
         })
-        
+       
         let getGCMTokens = Firebase(url:useFirebase+"Users/PushToken")
         
         getGCMTokens.observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -285,6 +285,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
             useHeroku = productionHerokuURL
             useBT = sandboxTokenBT
             useFirebase = sandboxFirebase
+            //useFirebase = productionFirebase
         }
         
         if (devStatus == "production"){

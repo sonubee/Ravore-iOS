@@ -1,40 +1,11 @@
 import Firebase
-var arrayOfMessages = [ObjectMessage]()
 import AirshipKit
 import Toucan
-
-var whichImage = ""
-
-
 import UIKit
 import Kingfisher
 
-func getDocumentsURL() -> NSURL {
-    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-    return documentsURL
-}
-
-func fileInDocumentsDirectory(filename: String) -> String {
-    
-    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-    return fileURL.path!
-    
-}
-
-func loadImageFromPath(path: String) -> UIImage? {
-    
-    let image = UIImage(contentsOfFile: path)
-    
-    if image == nil {
-        
-        print("missing image at: \(path)")
-    }
-    print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
-    return image
-    
-}
-
-// Define the specific path, image name
+var arrayOfMessages = [ObjectMessage]()
+var whichImage = ""
 let imagePath = fileInDocumentsDirectory("person")
 
 class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -46,78 +17,21 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
     var globalGiverId = ""
     var globalReceiverId = ""
     var globalOs = ""
+    var imagePicker: UIImagePickerController!
+    var getMessages = Firebase(url: useFirebase+"Messages/")
+    var Cloudinary:CLCloudinary!
 
     @IBOutlet weak var receiverImage: UIImageView!
     @IBOutlet weak var giverImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    var imagePicker: UIImagePickerController!
-    
-    var getMessages = Firebase(url: useFirebase+"Messages/")
-    
-    var Cloudinary:CLCloudinary!
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         downloadObjects()
-        
-        Cloudinary = CLCloudinary(url: "cloudinary://178784351611733:YCXhoirSpE72oyokrShYcHM1cfg@do3jsfnn5")
-        
-        if UAirship.push().deviceToken != nil {
-            print("Device Token from Messaging: ",UAirship.push().deviceToken!)
-            
-            if UAirship.push().channelID == nil {
-                channelID = "not set yet"
-                print("Channel ID Not Set Yet")
-            }
-                
-            else {
-                channelID = UAirship.push().channelID!
-                print("--Channel ID: \(channelID)")
-            }
-          
-            deviceToken = UAirship.push().deviceToken!
-            print("--Device Token: \(UAirship.push().deviceToken!)")
-            
-            
-            print("before the false statement")
-            if foundToken == false {
-                foundToken = true
-                print("Token not found on Server -- Posting Token Onto Firebase")
-                
-                let postToken = Firebase(url: "\(useFirebase)Users/PushToken")
-                let postTokenObject = ["os": "ios", "token": deviceToken, "userId": UDID]
-                
-                postToken.childByAutoId().setValue(postTokenObject)
-            }
-            print("after the false statement")
-        }
-
-        
-        let tapGiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("giverImageTapped:"))
-        giverImage.userInteractionEnabled = true
-        giverImage.addGestureRecognizer(tapGiverGestureRecognizer)
-        
-        let tapReceiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("receiverImageTapped:"))
-        receiverImage.userInteractionEnabled = true
-        receiverImage.addGestureRecognizer(tapReceiverGestureRecognizer)
-        
-        //let image2 = UIImage(named: "person")!
-        //saveImage(image2, path: imagePath)
-        
-        giverImage.image = UIImage(named: "anon")
-        receiverImage.image = UIImage(named: "anon")
-        
-        var tempImage : UIImage
-        tempImage = giverImage.image!
-        
-        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70), fitMode: Toucan.Resize.FitMode.Crop).image
-        
-        giverImage.image = resizedAndMaskedImage
-        receiverImage.image = resizedAndMaskedImage
-        
-        print ("before setting images")
-        
+        finalPostOfTokenToServer()
+        setup()
         
         for (var i=0; i < allBracelets.count; i++){
             if (braceletSelected == allBracelets[i].braceletId){
@@ -134,12 +48,10 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
                     
                     for profile : ObjectProfilePic in allPics {
                         if profile.userId == allBracelets[i].receiverId {
-                            print("inside if")
+                          
                             globalReceiverId = profile.userId
                             messageReceiver = profile.userId
                             receiverImage.kf_setImageWithURL(NSURL(string: profile.url)!)
-                            
-                            print ("heeeeeee")
                             
                             var tempImage : UIImage
                             
@@ -150,11 +62,6 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
                                 
                                 receiverImage.image = resizedAndMaskedImage
                             }
-                            
-                            print ("22")
-                            
-                       
-                            
                         }
                     }
                     
@@ -672,5 +579,86 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         self.view.endEditing(true)
     }
     
+    func finalPostOfTokenToServer() {
+        if UAirship.push().deviceToken != nil {
+            print("Device Token from Messaging: ",UAirship.push().deviceToken!)
+            
+            if UAirship.push().channelID == nil {
+                channelID = "not set yet"
+                print("Channel ID Not Set Yet")
+            }
+                
+            else {
+                channelID = UAirship.push().channelID!
+                print("--Channel ID: \(channelID)")
+            }
+            
+            deviceToken = UAirship.push().deviceToken!
+            print("--Device Token: \(UAirship.push().deviceToken!)")
+            
+            
+            print("before the false statement")
+            if foundToken == false {
+                foundToken = true
+                print("Token not found on Server -- Posting Token Onto Firebase")
+                
+                let postToken = Firebase(url: "\(useFirebase)Users/PushToken")
+                let postTokenObject = ["os": "ios", "token": deviceToken, "userId": UDID]
+                
+                postToken.childByAutoId().setValue(postTokenObject)
+            }
+            print("after the false statement")
+        }
+    }
+    
+    func setup(){
+        
+        Cloudinary = CLCloudinary(url: "cloudinary://178784351611733:YCXhoirSpE72oyokrShYcHM1cfg@do3jsfnn5")
+        
+        let tapGiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("giverImageTapped:"))
+        giverImage.userInteractionEnabled = true
+        giverImage.addGestureRecognizer(tapGiverGestureRecognizer)
+        
+        let tapReceiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("receiverImageTapped:"))
+        receiverImage.userInteractionEnabled = true
+        receiverImage.addGestureRecognizer(tapReceiverGestureRecognizer)
+        
+        giverImage.image = UIImage(named: "anon")
+        receiverImage.image = UIImage(named: "anon")
+        
+        var tempImage : UIImage
+        tempImage = giverImage.image!
+        
+        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70), fitMode: Toucan.Resize.FitMode.Crop).image
+        
+        giverImage.image = resizedAndMaskedImage
+        receiverImage.image = resizedAndMaskedImage
+    }
+    
+    
+}
+
+func getDocumentsURL() -> NSURL {
+    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+    return documentsURL
+}
+
+func fileInDocumentsDirectory(filename: String) -> String {
+    
+    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+    return fileURL.path!
+    
+}
+
+func loadImageFromPath(path: String) -> UIImage? {
+    
+    let image = UIImage(contentsOfFile: path)
+    
+    if image == nil {
+        
+        print("missing image at: \(path)")
+    }
+    print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
+    return image
     
 }
