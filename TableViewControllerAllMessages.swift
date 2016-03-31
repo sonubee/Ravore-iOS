@@ -32,16 +32,18 @@ class TableViewControllerAllMessages: UITableViewController {
      
         self.tableView.reloadData()
         
+        address = ""
         beadCount=0
         kandiCount=0
         totalPrice=0
         shippingPrice = 0.35
         subtotalPrice = 0
-        
+    
         if purchaseMade == true {
-            Toast.makeToast("Your order has been placed and will arrive in 5 Days").show()
+            Toast.makeToast("Your order has been placed and will arrive in 5 Days. You can check status on the Order Status Screen").show()
             purchaseMade=false
             
+            address = ""
             beadCount=0
             kandiCount=0
             totalPrice=0

@@ -72,7 +72,7 @@ extension ViewControllerMessaging {
                 
                 postToken.childByAutoId().setValue(postTokenObject)
             }
-            print("after the false statement")
+            print("end of posting token in messaging")
         }
     }
     
@@ -105,6 +105,7 @@ extension ViewControllerMessaging {
         giverImage.image = resizedAndMaskedImage
         receiverImage.image = resizedAndMaskedImage
         
+        print("end of setup")
         
     }
     

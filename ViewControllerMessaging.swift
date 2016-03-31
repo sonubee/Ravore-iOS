@@ -6,7 +6,7 @@ import Kingfisher
 
 var arrayOfMessages = [ObjectMessage]()
 var whichImage = ""
-let imagePath = fileInDocumentsDirectory("person")
+let imagePath = fileInDocumentsDirectory("anon")
 
 class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -91,6 +91,8 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         if replaceGorR == "receiver"{receiverImage.image = resizedAndMaskedImage}
         
         if let jpegData = UIImageJPEGRepresentation(image, 80) {jpegData.writeToFile(imagePath, atomically: true)}
+        
+        UploadImage().uploadToCloudinary(image)
         
         
     }

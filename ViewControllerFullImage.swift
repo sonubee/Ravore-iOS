@@ -17,8 +17,10 @@ class ViewControllerFullImage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if whichImage == UDID {fullImage.image = UIImage(contentsOfFile: imagePath)!}
+        fullImage.contentMode = .ScaleAspectFit
         
+        if whichImage == UDID {fullImage.image = UIImage(contentsOfFile: imagePath)!}
+            
         else {
             
             for userPic : ObjectProfilePic in allPics {
