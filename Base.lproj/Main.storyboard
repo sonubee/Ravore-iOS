@@ -363,7 +363,6 @@
                     <connections>
                         <outlet property="giverImage" destination="q6n-g9-ay3" id="0r1-9Y-4ue"/>
                         <outlet property="giverLabel" destination="VXn-qO-cvF" id="aQe-Hp-idX"/>
-                        <outlet property="kandiNumDisplay" destination="PQ0-Pc-bJF" id="Kb3-cz-Xsk"/>
                         <outlet property="messageBox" destination="y25-Hf-PBW" id="tSS-Ot-Vlo"/>
                         <outlet property="receiverImage" destination="B30-qa-ZqV" id="ZYA-yv-cfb"/>
                         <outlet property="receiverLabel" destination="N9k-uj-vGZ" id="bC7-Nh-Ezk"/>
