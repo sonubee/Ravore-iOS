@@ -33,7 +33,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         downloadObjects()
         finalPostOfTokenToServer()
         setup()
-        //setupImages()
+        setupImages()
         setupLabels()
     }
     

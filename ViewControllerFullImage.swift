@@ -19,7 +19,17 @@ class ViewControllerFullImage: UIViewController {
         
         fullImage.contentMode = .ScaleAspectFit
         
-        if whichImage == UDID {fullImage.image = UIImage(contentsOfFile: imagePath)!}
+        if whichImage == UDID {
+            if let tempImage = UIImage(contentsOfFile: imagePath) {
+                fullImage.image = tempImage
+            }
+            
+            else {
+                fullImage.image = UIImage(named: "rsz_anon")
+            }
+            
+            //fullImage.image = UIImage(contentsOfFile: imagePath)!
+        }
             
         else {
             

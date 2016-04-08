@@ -62,13 +62,15 @@ extension FirstViewController {
         
         getPics.observeEventType(.ChildAdded, withBlock: { snapshot in
             
-            let fullPhotoUrl = snapshot.value.objectForKey("fullPhotoUrl") as? String
-            let fullPhotoVersion = snapshot.value.objectForKey("fullPhotoVersion") as? String
-            let url = snapshot.value.objectForKey("url") as? String
-            let urlVersion = snapshot.value.objectForKey("urlVersion") as? String
+            let fullPhotoUrl = snapshot.value.objectForKey("fullPhotoUrl") as! String
+            let fullPhotoVersion = snapshot.value.objectForKey("fullPhotoVersion") as! String
+            let url = snapshot.value.objectForKey("url") as! String
+            let urlVersion = snapshot.value.objectForKey("urlVersion") as! String
             let userId = snapshot.value.objectForKey("userId") as! String
             
-            let addProfile = ObjectProfilePic(userId: "\(userId)", url: "\(url)", urlVersion: "\(urlVersion)", fullPhotoUrl: "\(fullPhotoUrl)", fullPhotoVersion: "\(fullPhotoVersion)")
+            //let addProfile = ObjectProfilePic(userId: "\(userId)", url: "\(url)", urlVersion: "\(urlVersion)", fullPhotoUrl: "\(fullPhotoUrl)", fullPhotoVersion: "\(fullPhotoVersion)")
+            
+            let addProfile = ObjectProfilePic(userId: userId, url: url, urlVersion: urlVersion, fullPhotoUrl: fullPhotoUrl, fullPhotoVersion: fullPhotoVersion)
             
             allPics.append(addProfile)
         })

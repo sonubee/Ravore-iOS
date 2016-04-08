@@ -92,7 +92,7 @@ class UploadImage {
                 
                 if fileId == UDID {
                     
-                    print ("Inside UDID")
+                    print ("Inside UDID-\(useFirebase)")
                     
                     postNextPics = ["url" : url, "urlVersion" : version]
                     postPics.updateChildValues(postNextPics)
@@ -107,7 +107,7 @@ class UploadImage {
                     postNextPics = ["fullPhotoUrl" : url, "fullPhotoVersion" : version]
                     postPics.updateChildValues(postNextPics)
                     
-                    Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
+                    Firebase(url: "\(useFirebase)Users").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
 
                 }
             }

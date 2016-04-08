@@ -81,13 +81,17 @@ class TableViewControllerAllMessages: UITableViewController {
 
         var tempImage : UIImage
         
-        print("1")
+        print("//1")
 
         if (registeredBracelets[indexPath.row].giverId == UDID){
             
-            print("2")
+            print("//2")
+            print (allPics.count)
      
             for (var i = 0; i < allPics.count; i++){
+                
+                print("--\(allPics[i].url)")
+                
                 if (allPics[i].userId == registeredBracelets[indexPath.row].receiverId){
                     
                     let url = allPics[i].url
@@ -95,52 +99,11 @@ class TableViewControllerAllMessages: UITableViewController {
                     print("3")
                     if let image = UIImage(named: "placeholder") {
                         
-                        print("4")
-                        
-                        
-                        
-                        let imageName = "placeholder"
-                        let image = UIImage(named: imageName)
-                        let testImage = UIImageView(image: image!)
-                        
-                        //testImage.image = cell.message.text ?? "nil"
-                        
-                        
-                        //let testImage.image = UIImage(named: "placeholder")
-                        print(url)
-                        
-                        
-                       
-                        
-                        do {
-                        //    testImage.kf_setImageWithURL(NSURL(string: url)!)
-                        } catch _ {
-                            print("error!")
-                        }
-                        
-                        
-                        let url = NSURL(string: url)
-                        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                        testImage.image = UIImage(data: data!)
-                        
-                        
-                        
                         print("4.5")
-               /*
-                        //if cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image) != nil{
-                            
-                            print("5")
-                            
-                            tempImage = cell.imageView!.image!
-                            
-                            let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
-                            
-                            print("6")
-                            
-                            cell.imageView!.image = resizedAndMaskedImage
-                        //}
                         
-                    */
+                        cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
+                            
+                        print("5")
                     }
                 }
             }
@@ -161,17 +124,19 @@ class TableViewControllerAllMessages: UITableViewController {
                         cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
                         
                         print("ya")
-                        tempImage = cell.imageView!.image!
-                        
-                        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
-                        
-                        print("k")
-                        
-                        cell.imageView!.image = resizedAndMaskedImage
+              
                     }
                 }
             }
         }
+        
+        tempImage = cell.imageView!.image!
+        
+        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+        
+        print("k")
+        
+        cell.imageView!.image = resizedAndMaskedImage
 
         
    
