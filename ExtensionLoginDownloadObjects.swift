@@ -176,9 +176,9 @@ extension FirstViewController {
         })
  
         //if (devStatus == "production") {
-            //Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("userId").setValue(UDID)
-            //Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("lastLogin").setValue(shortDate)
-            //Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("os").setValue("ios")
+            Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("userId").setValue(UDID)
+            Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("lastLogin").setValue(shortDate)
+            Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("os").setValue("ios")
         //}
         
     }

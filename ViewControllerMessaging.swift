@@ -20,12 +20,13 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
     var imagePicker: UIImagePickerController!
     var getMessages = Firebase(url: useFirebase+"Messages/")
     
-    @IBOutlet weak var giverLabel: UILabel!
-    @IBOutlet weak var receiverLabel: UILabel!
+  
+
     @IBOutlet weak var receiverImage: UIImageView!
     @IBOutlet weak var giverImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +34,6 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         finalPostOfTokenToServer()
         setup()
         setupImages()
-        setupLabels()
     }
     
 
@@ -241,11 +241,6 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
             whichImage = braceletChosen.receiverId
             performSegueWithIdentifier("goToFullImage", sender: self)
         }
-    }
-    
-    func setupLabels(){
-        if globalGiverId == UDID {giverLabel.text = "You"}
-        else {receiverLabel.text = "You"}
     }
     
     
