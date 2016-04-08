@@ -1,11 +1,17 @@
-
-import Foundation
+//
+//  DownloadObjects.swift
+//  Ravore2
+//
+//  Created by Admin on 3/28/16.
+//  Copyright © 2016 G LLC. All rights reserved.
+//
+/*
 import UIKit
-import PKHUD
 import Firebase
 
-extension FirstViewController {
-    func downloadObjects() {
+class DownloadObjects : FirstViewController {
+
+    func downloadObjects(){
         
         HUD.show(.Progress)
         
@@ -174,8 +180,9 @@ extension FirstViewController {
                 }
             }
             
-            
+       
         })
-        
     }
+
 }
+*/

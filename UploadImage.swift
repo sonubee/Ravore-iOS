@@ -63,10 +63,15 @@ class UploadImage {
         let versionInt = successResult["version"] as! Int
         let version = String(versionInt)
         
+        
         print("File ID: \(fileId)")
         print("URL: \(url)")
+        //uploadDetailsToServer(fileId)
         
-        let postPics = Firebase(url: "\(useFirebase)Users/\(UDID)/ProfilePics")
+        
+        let postPics = Firebase(url: "\(useFirebase)Users/ProfilePics/\(UDID)")
+        
+        print("after post pics")
         
         postPics.observeEventType(.Value, withBlock: { snap in
             if snap.value is NSNull {
@@ -82,12 +87,12 @@ class UploadImage {
                 }
                 
                 postPics.setValue(postFirstPics)
-                Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").setValue(postFirstPics)
                 
             }
                 
             else {
                 
+                print("inside else statement")
                 var postNextPics = [String : String]()
                 
                 if fileId == UDID {
@@ -97,8 +102,11 @@ class UploadImage {
                     postNextPics = ["url" : url, "urlVersion" : version]
                     postPics.updateChildValues(postNextPics)
                     
-                    Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
-
+                    //let url = ["url" : url]
+                    //let version = ["urlVersion" : version]
+                    
+                    //postPics.updateChildValues(url)
+                    //postPics.updateChildValues(version)
                 }
                 
                 if fileId == "\(UDID)full" {
@@ -107,8 +115,11 @@ class UploadImage {
                     postNextPics = ["fullPhotoUrl" : url, "fullPhotoVersion" : version]
                     postPics.updateChildValues(postNextPics)
                     
-                    Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
-
+                    //let url = ["\(url)full" : url]
+                    //let version = ["\(version)full" : version]
+                    
+                    //postPics.updateChildValues(url)
+                    //postPics.updateChildValues(version)
                 }
             }
         })
