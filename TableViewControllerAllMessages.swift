@@ -78,25 +78,69 @@ class TableViewControllerAllMessages: UITableViewController {
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.font = UIFont.boldSystemFontOfSize(13)
         cell.imageView!.image = UIImage(named: "rsz_anon")
-/*
+
         var tempImage : UIImage
+        
+        print("1")
 
         if (registeredBracelets[indexPath.row].giverId == UDID){
+            
+            print("2")
      
             for (var i = 0; i < allPics.count; i++){
                 if (allPics[i].userId == registeredBracelets[indexPath.row].receiverId){
                     
                     let url = allPics[i].url
                     
-                    print("ok here")
+                    print("3")
                     if let image = UIImage(named: "placeholder") {
-                        cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
                         
-                        tempImage = cell.imageView!.image!
+                        print("4")
                         
-                        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
                         
-                        cell.imageView!.image = resizedAndMaskedImage
+                        
+                        let imageName = "placeholder"
+                        let image = UIImage(named: imageName)
+                        let testImage = UIImageView(image: image!)
+                        
+                        //testImage.image = cell.message.text ?? "nil"
+                        
+                        
+                        //let testImage.image = UIImage(named: "placeholder")
+                        print(url)
+                        
+                        
+                       
+                        
+                        do {
+                        //    testImage.kf_setImageWithURL(NSURL(string: url)!)
+                        } catch _ {
+                            print("error!")
+                        }
+                        
+                        
+                        let url = NSURL(string: url)
+                        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                        testImage.image = UIImage(data: data!)
+                        
+                        
+                        
+                        print("4.5")
+               /*
+                        //if cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image) != nil{
+                            
+                            print("5")
+                            
+                            tempImage = cell.imageView!.image!
+                            
+                            let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                            
+                            print("6")
+                            
+                            cell.imageView!.image = resizedAndMaskedImage
+                        //}
+                        
+                    */
                     }
                 }
             }
@@ -130,7 +174,7 @@ class TableViewControllerAllMessages: UITableViewController {
         }
 
         
- */  
+   
         print("after")
         
         //let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70), fitMode: Toucan.Resize.FitMode.Crop).image
