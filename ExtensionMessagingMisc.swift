@@ -1,4 +1,3 @@
-
 import UIKit
 import Foundation
 import Firebase
@@ -11,7 +10,7 @@ extension ViewControllerMessaging {
     
     func downloadObjects() {
         
-        
+
         
         let braceletGo = braceletSelected
         var messageUrl = useFirebase + "Messages/"
@@ -34,9 +33,7 @@ extension ViewControllerMessaging {
             
             let lastIndex = NSIndexPath(forRow: arrayOfMessages.count - 1, inSection: 0)
             self.tableView.scrollToRowAtIndexPath(lastIndex, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-            
         })
-        
     }
     
     
@@ -61,7 +58,6 @@ extension ViewControllerMessaging {
             deviceToken = UAirship.push().deviceToken!
             print("--Device Token: \(UAirship.push().deviceToken!)")
             
-            
             print("before the false statement")
             if foundToken == false {
                 foundToken = true
@@ -70,10 +66,22 @@ extension ViewControllerMessaging {
                 let postToken = Firebase(url: "\(useFirebase)Users/PushToken")
                 let postTokenObject = ["os": "ios", "token": deviceToken, "userId": UDID]
                 
+                //if devStatus == "production"{
+                    //Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("token").setValue(postTokenObject)
+                    Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("token").setValue(deviceToken)
+                //}
+                
+                
                 postToken.childByAutoId().setValue(postTokenObject)
             }
             print("end of posting token in messaging")
         }
+    }
+    
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     func setup(){
@@ -107,13 +115,6 @@ extension ViewControllerMessaging {
         
         print("end of setup")
         
-    }
-    
-    
-    func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
     }
     
     

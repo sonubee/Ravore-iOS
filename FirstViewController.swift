@@ -95,12 +95,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         
         self.braceletIdFromLogin.delegate=self
         braceletIdFromLogin.keyboardType = UIKeyboardType.NumberPad
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-  
 }
-
