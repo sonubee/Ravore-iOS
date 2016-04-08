@@ -20,6 +20,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
     var imagePicker: UIImagePickerController!
     var getMessages = Firebase(url: useFirebase+"Messages/")
     
+    @IBOutlet weak var kandiNumDisplay: UILabel!
     @IBOutlet weak var giverLabel: UILabel!
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var receiverImage: UIImageView!
@@ -32,7 +33,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         downloadObjects()
         finalPostOfTokenToServer()
         setup()
-        setupImages()
+        //setupImages()
         setupLabels()
     }
     

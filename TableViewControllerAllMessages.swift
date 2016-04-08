@@ -78,19 +78,26 @@ class TableViewControllerAllMessages: UITableViewController {
         cell.backgroundColor = UIColor.blackColor()
         cell.textLabel?.font = UIFont.boldSystemFontOfSize(13)
         cell.imageView!.image = UIImage(named: "rsz_anon")
-        
-        var url = ""
-        
-        
-        
+/*
+        var tempImage : UIImage
+
         if (registeredBracelets[indexPath.row].giverId == UDID){
      
             for (var i = 0; i < allPics.count; i++){
                 if (allPics[i].userId == registeredBracelets[indexPath.row].receiverId){
-                    url = allPics[i].url
                     
-                    let image = UIImage(named: "placeholder")
-                    cell.imageView!.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
+                    let url = allPics[i].url
+                    
+                    print("ok here")
+                    if let image = UIImage(named: "placeholder") {
+                        cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
+                        
+                        tempImage = cell.imageView!.image!
+                        
+                        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                        
+                        cell.imageView!.image = resizedAndMaskedImage
+                    }
                 }
             }
         }
@@ -99,22 +106,36 @@ class TableViewControllerAllMessages: UITableViewController {
       
             for (var i = 0; i < allPics.count; i++){
                 if (allPics[i].userId == registeredBracelets[indexPath.row].giverId){
-                    url = allPics[i].url
                     
-                    let image = UIImage(named: "placeholder")
-                    cell.imageView!.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
+                    let url = allPics[i].url
+                    
+                    print("ok here2")
+                    if let image = UIImage(named: "placeholder") {
+                        
+                        print("lala")
+                        
+                        cell.imageView?.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: image)
+                        
+                        print("ya")
+                        tempImage = cell.imageView!.image!
+                        
+                        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+                        
+                        print("k")
+                        
+                        cell.imageView!.image = resizedAndMaskedImage
+                    }
                 }
             }
         }
+
         
-        var tempImage : UIImage
-        tempImage = cell.imageView!.image!
-        
-        let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70)).maskWithEllipse().image
+ */  
+        print("after")
         
         //let resizedAndMaskedImage = Toucan(image: tempImage).resize(CGSize(width: 70, height: 70), fitMode: Toucan.Resize.FitMode.Crop).image
         
-        cell.imageView!.image = resizedAndMaskedImage
+        
         
         return cell
     }
