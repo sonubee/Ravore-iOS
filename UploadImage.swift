@@ -66,7 +66,7 @@ class UploadImage {
         print("File ID: \(fileId)")
         print("URL: \(url)")
         
-        let postPics = Firebase(url: "\(useFirebase)Users/\(UDID)/ProfilePics")
+        let postPics = Firebase(url: "\(useFirebase)Users/ProfilePics").childByAppendingPath(UDID)
         
         postPics.observeEventType(.Value, withBlock: { snap in
             if snap.value is NSNull {
@@ -82,7 +82,7 @@ class UploadImage {
                 }
                 
                 postPics.setValue(postFirstPics)
-                Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").setValue(postFirstPics)
+                Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postFirstPics)
                 
             }
                 
@@ -97,7 +97,7 @@ class UploadImage {
                     postNextPics = ["url" : url, "urlVersion" : version]
                     postPics.updateChildValues(postNextPics)
                     
-                    Firebase(url: "\(useFirebase)Users/\(UDID)").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
+                    Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postNextPics)
 
                 }
                 
@@ -107,8 +107,7 @@ class UploadImage {
                     postNextPics = ["fullPhotoUrl" : url, "fullPhotoVersion" : version]
                     postPics.updateChildValues(postNextPics)
                     
-                    Firebase(url: "\(useFirebase)Users").childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
-
+                    Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postNextPics)
                 }
             }
         })
