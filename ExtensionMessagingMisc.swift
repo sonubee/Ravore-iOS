@@ -93,7 +93,7 @@ extension ViewControllerMessaging {
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
         self.navigationItem.leftBarButtonItem = newBackButton;
         // Do any additional setup after loading the view.
-        
+ /*
         let tapGiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("giverImageTapped:"))
         giverImage.userInteractionEnabled = true
         giverImage.addGestureRecognizer(tapGiverGestureRecognizer)
@@ -101,7 +101,7 @@ extension ViewControllerMessaging {
         let tapReceiverGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("receiverImageTapped:"))
         receiverImage.userInteractionEnabled = true
         receiverImage.addGestureRecognizer(tapReceiverGestureRecognizer)
-        
+*/     
         giverImage.image = UIImage(named: "anon")
         receiverImage.image = UIImage(named: "anon")
         
@@ -112,6 +112,8 @@ extension ViewControllerMessaging {
         
         giverImage.image = resizedAndMaskedImage
         receiverImage.image = resizedAndMaskedImage
+        
+        kandiNumDisplay.text = "Kandi #\(braceletSelected)"
         
         print("end of setup")
         
