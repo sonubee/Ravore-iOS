@@ -68,9 +68,9 @@ extension FirstViewController {
             let urlVersion = snapshot.value.objectForKey("urlVersion") as! String
             let userId = snapshot.value.objectForKey("userId") as! String
             
-            //let addProfile = ObjectProfilePic(userId: "\(userId)", url: "\(url)", urlVersion: "\(urlVersion)", fullPhotoUrl: "\(fullPhotoUrl)", fullPhotoVersion: "\(fullPhotoVersion)")
-            
-            let addProfile = ObjectProfilePic(userId: userId, url: url, urlVersion: urlVersion, fullPhotoUrl: fullPhotoUrl, fullPhotoVersion: fullPhotoVersion)
+            let addProfile = ObjectProfilePic(userId: "\(userId)", url: "\(url)", urlVersion: "\(urlVersion)", fullPhotoUrl: "\(fullPhotoUrl)", fullPhotoVersion: "\(fullPhotoVersion)")
+
+            //let addProfile = ObjectProfilePic(userId: userId, url: url, urlVersion: urlVersion, fullPhotoUrl: fullPhotoUrl, fullPhotoVersion: fullPhotoVersion)
             
             allPics.append(addProfile)
         })
@@ -105,12 +105,7 @@ extension FirstViewController {
             
         })
         
-        //let postOrder = Firebase(url:useFirebase+"Orders")
-        //let postTestOrder = Firebase(url:useFirebase+"OrdersTest")
-        
         let getAllOrders = Firebase(url:useFirebase+"Orders")
-        
-        //let getAllOrders = Firebase(url:useFirebase+"OrdersTest")
         
         getAllOrders.observeEventType(.ChildAdded, withBlock: { snapshot in
             
@@ -182,6 +177,8 @@ extension FirstViewController {
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("lastLogin").setValue(shortDate)
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("os").setValue("ios")
         }
+        
+        
         
     }
     

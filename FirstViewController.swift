@@ -68,7 +68,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
        
     }
     
-    func setup(){
+    func setup() {
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0;
         

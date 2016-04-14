@@ -88,17 +88,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(UIBackgroundFetchResult.NoData)
         }
     }
-    
+  /*
     func postDeviceTokenToServer(channelId : String, deviceToken: String) {
         
         print("trying to post device !!!!!!!!!!!!!!!!")
+        print(channelId)
+        print(deviceToken)
         
         let sendBody = "token=\(channelId)&UDID=\(UDID)&deviceToken=\(deviceToken)"
         
         SendServerRequest.sendRequest("https://sheltered-wave-14675.herokuapp.com/postIOSToken", body: sendBody)
 
     }
-    
+    */
     func initializeNotificationServices() -> Void {
         let settings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
         

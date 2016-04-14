@@ -34,6 +34,16 @@ class PushToken {
             deviceToken = UAirship.push().deviceToken!
             print("Device Token: \(UAirship.push().deviceToken!)")
         }
+        
+        
+        print("trying to post device token !!!!!!!!!!!!!!!!")
+        print(channelID)
+        print(deviceToken)
+        
+        let sendBody = "token=\(channelID)&UDID=\(UDID)&deviceToken=\(deviceToken)"
+        
+        SendServerRequest.sendRequest("https://sheltered-wave-14675.herokuapp.com/postIOSToken", body: sendBody)
     }
+
     
 }

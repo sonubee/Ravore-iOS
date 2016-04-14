@@ -12,6 +12,9 @@ import Firebase
 
 class UploadImage {
     
+    var smallUploadedAlready = false
+    var bigUploadedAlready = false
+    
     var Cloudinary:CLCloudinary!
     
     
@@ -63,54 +66,71 @@ class UploadImage {
         let versionInt = successResult["version"] as! Int
         let version = String(versionInt)
         
-        print("File ID: \(fileId)")
-        print("URL: \(url)")
+        print("***************File ID: \(fileId)")
+        print("***************URL: \(url)")
         
         let postPics = Firebase(url: "\(useFirebase)Users/ProfilePics").childByAppendingPath(UDID)
         
-        postPics.observeEventType(.Value, withBlock: { snap in
-            if snap.value is NSNull {
+        if !bigUploadedAlready || !smallUploadedAlready {
+            print("hererererererer")
+            postPics.observeSingleEventOfType(.Value, withBlock: { snap in
                 
-                var postFirstPics = [String : String]()
-                
-                if fileId == UDID {
-                    postFirstPics = ["userId" : UDID, "fullPhotoUrl" : "Updating", "fullPhotoVersion" : "Updating", "url" : url, "urlVersion" : version]
+                if snap.value is NSNull {
+                    
+                    print("((((((((((((nsnull if")
+                    
+                    var postFirstPics = [String : String]()
+                    
+                    if fileId == UDID {
+                        postFirstPics = ["userId" : UDID, "fullPhotoUrl" : "Updating", "fullPhotoVersion" : "Updating", "url" : url, "urlVersion" : version, "userId" : UDID]
+                    }
+                    
+                    if fileId == "\(UDID)full" {
+                        postFirstPics = ["userId" : UDID, "fullPhotoUrl" : url, "fullPhotoVersion" : version, "url" : "Updating", "urlVersion" : "Updating", "userId" : UDID]
+                    }
+                    
+                    postPics.setValue(postFirstPics)
+                    
+                    Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").setValue(postFirstPics)
+                    
                 }
-                
-                if fileId == "\(UDID)full" {
-                    postFirstPics = ["userId" : UDID, "fullPhotoUrl" : url, "fullPhotoVersion" : version, "url" : "Updating", "urlVersion" : "Updating"]
+                    
+                else {
+                    
+                     print("((((((((((((nsnull else")
+                    
+                    var postNextPics = [String : String]()
+                    
+                    if fileId == UDID {
+                        
+                        print ("Inside UDID-\(useFirebase)")
+                        
+                        postNextPics = ["url" : url, "urlVersion" : version, "userId" : UDID]
+                        postPics.updateChildValues(postNextPics)
+                        
+                        Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").setValue(postNextPics)
+                        
+                    }
+                    
+                    if fileId == "\(UDID)full" {
+                        
+                        print ("Inside UDIDfull")
+                        postNextPics = ["fullPhotoUrl" : url, "fullPhotoVersion" : version]
+                        postPics.updateChildValues(postNextPics)
+                        
+                        Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
+                    }
                 }
-                
-                postPics.setValue(postFirstPics)
-                Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postFirstPics)
-                
-            }
-                
-            else {
-                
-                var postNextPics = [String : String]()
-                
-                if fileId == UDID {
-                    
-                    print ("Inside UDID-\(useFirebase)")
-                    
-                    postNextPics = ["url" : url, "urlVersion" : version]
-                    postPics.updateChildValues(postNextPics)
-                    
-                    Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postNextPics)
-
-                }
-                
-                if fileId == "\(UDID)full" {
-                    
-                    print ("Inside UDIDfull")
-                    postNextPics = ["fullPhotoUrl" : url, "fullPhotoVersion" : version]
-                    postPics.updateChildValues(postNextPics)
-                    
-                    Firebase(url: "\(useFirebase)Users").childByAppendingPath(UDID).setValue(postNextPics)
-                }
-            }
-        })
+            })
+        }
+        
+        if fileId == UDID {
+            bigUploadedAlready = true
+        }
+            
+        else if fileId == "\(UDID)full" {
+            smallUploadedAlready = true
+        }
     }
     
     func onCloudinaryProgress(bytesWritten:Int, totalBytesWritten:Int, totalBytesExpectedToWrite:Int, idContext:AnyObject!) {

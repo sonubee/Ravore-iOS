@@ -42,6 +42,28 @@ extension ViewControllerMessaging {
     }
     
     func finalPostOfTokenToServer() {
+        
+        PushToken.pushUAirship()
+        
+        UAirship.push().updateRegistration()
+        
+        let updateInfo = ["deviceId": UDID, "lastLogin": shortDate, "os" : "iOS" , "token" : deviceToken]
+        
+        Firebase(url:useFirebase+"UserInfo/\(UDID)").setValue(updateInfo)
+        
+        if foundToken == false {
+            foundToken = true
+            print("Token not found on Server -- Posting Token Onto Firebase")
+            
+            let postToken = Firebase(url: "\(useFirebase)Users/PushToken")
+            let postTokenObject = ["os": "ios", "token": deviceToken, "userId": UDID]
+            
+            Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("token").setValue(deviceToken)
+      
+            postToken.childByAutoId().setValue(postTokenObject)
+        }
+        
+        /*
         if UAirship.push().deviceToken != nil {
             print("Device Token from Messaging: ",UAirship.push().deviceToken!)
             
@@ -76,6 +98,7 @@ extension ViewControllerMessaging {
             }
             print("end of posting token in messaging")
         }
+ */
     }
     
     func getDocumentsDirectory() -> NSString {
