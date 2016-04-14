@@ -135,7 +135,6 @@ extension FirstViewController {
         
         getGCMTokens.observeEventType(.ChildAdded, withBlock: { snapshot in
             
-            //gcmTokens[snapshot.key] = snapshot.value as! String
             let os = snapshot.value.objectForKey("os") as! String
             let token = snapshot.value.objectForKey("token") as! String
             let userId = snapshot.value.objectForKey("userId") as! String
@@ -143,12 +142,12 @@ extension FirstViewController {
             let downloadToken = ObjectToken(os: os, token: token, userId: userId)
             
             allTokens.append(downloadToken)
-     /*
+/*
             print("--Searching Tokens on Firebase--")
             print("UserId: ", userId)
             print("Token on Firebase: ", token)
             print("This device Token: ", deviceToken)
-            */
+*/
             if (deviceToken != "not set yet") {
                 if token == deviceToken {
                     foundToken = true
@@ -171,13 +170,13 @@ extension FirstViewController {
                 }
             }
         })
- 
+/*
         if (devStatus == "production") {
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("userId").setValue(UDID)
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("lastLogin").setValue(shortDate)
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("os").setValue("ios")
         }
-        
+*/
         
         
     }

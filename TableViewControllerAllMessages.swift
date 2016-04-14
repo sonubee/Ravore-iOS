@@ -71,7 +71,6 @@ class TableViewControllerAllMessages: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
        
-        
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Default")
         cell.textLabel!.text = registeredBracelets[indexPath.row].getBraceletId()
         cell.textLabel!.textColor = UIColor.whiteColor()

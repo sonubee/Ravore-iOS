@@ -50,6 +50,12 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         return arrayOfMessages.count
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat { return UITableViewAutomaticDimension }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -58,6 +64,8 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
 
         cell.textLabel?.text = arrayOfMessages[indexPath.row].message
         cell.backgroundColor = UIColor.blackColor()
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
         cell.textLabel?.font = UIFont.boldSystemFontOfSize(13)
         
