@@ -41,9 +41,7 @@ class ViewControllerAddBracelet: UIViewController, UITextFieldDelegate {
         let segueString = AddReceiver().overallProcess(braceletSelected)
         if segueString != "" {
             
-            if segueString == "goToAllMessages" {
-                self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)
-            }
+            if segueString == "goToAllMessages" {self.performSegueWithIdentifier("goToMessageFromAdd", sender: self)}
             
             else {
                 self.performSegueWithIdentifier(segueString, sender: self)

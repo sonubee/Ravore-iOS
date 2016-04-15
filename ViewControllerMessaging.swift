@@ -184,7 +184,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         }
             
         else {
-            
+            print("going to full image cause not UDID")
             whichImage = braceletChosen.giverId
             performSegueWithIdentifier("goToFullImage", sender: self)
         }
@@ -264,8 +264,12 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         
         for (var i=0; i < allBracelets.count; i++){
             if (braceletSelected == allBracelets[i].braceletId){
-                
+                print("^^^^^^^^%%%%%%%%% before checking giver ID")
+                print(UDID)
+                print(allBracelets[i].giverId)
+                print(allBracelets[i].braceletId)
                 if (allBracelets[i].giverId == UDID){
+                    print("the giver ID matched UDID")
                     globalGiverId = UDID
                     messageSender = UDID
                     

@@ -54,6 +54,15 @@ class AddGiver {
         }
         
         registeredBracelets.append(braceletChosen)
+        
+        let addGiverObject = ObjectBracelet(receiverId: "NA", giverId: UDID, dateCreated: braceletChosen.dateCreated, dateReceived: "NA", dateRegistered: shortDate, braceletId: braceletChosen.braceletId)
+        
+        for (var i=0 ; i < allBracelets.count; i++) {
+            if allBracelets[i].braceletId == braceletSelected {
+                allBracelets[i] = addGiverObject
+            }
+        }
+
     }
     
 }

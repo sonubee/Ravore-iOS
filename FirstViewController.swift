@@ -83,8 +83,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         if (devStatus == "sandbox"){
             useHeroku = productionHerokuURL
             useBT = sandboxTokenBT
-            //useFirebase = sandboxFirebase
-            useFirebase = productionFirebase
+            useFirebase = sandboxFirebase
+            //useFirebase = productionFirebase
         }
         
         if (devStatus == "production"){
