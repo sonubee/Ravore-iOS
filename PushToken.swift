@@ -19,7 +19,7 @@ class PushToken {
             channelID = "not set yet"
             print("Channel ID Not Set Yet")
         }
-            
+ 
         else {
             channelID = UAirship.push().channelID!
             print("Channel ID: \(channelID)")

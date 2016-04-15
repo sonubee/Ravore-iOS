@@ -2,6 +2,7 @@
 import UIKit
 import PKHUD
 import Firebase
+import SplunkMint
 
 class FirstViewController: UIViewController, UITextFieldDelegate {
 
@@ -95,6 +96,15 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         
         self.braceletIdFromLogin.delegate=self
         braceletIdFromLogin.keyboardType = UIKeyboardType.NumberPad
+       
+        //Initialize the SDK to use the MINT Backend to transport data
+        //Will start a new session if one is not active
+        Mint.sharedInstance().initAndStartSessionWithAPIKey("ce2dfcb7")
+        
+        //Initialize the SDK to directly send data to a Splunk instance using
+        //HTTP Event Collector
+        //Will start a new session if one is not active
+        Mint.sharedInstance().initAndStartSessionWithHECUrl("HEC_URL", token: "HEC_TOKEN")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

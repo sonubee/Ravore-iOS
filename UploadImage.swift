@@ -77,21 +77,40 @@ class UploadImage {
                 
                 if snap.value is NSNull {
                     
+                    
+                    let createEmptyFirst = ["userId" : "NA", "url" : "NA", "urlVersion" : "NA", "fullPhotoUrl" : "NA", "fullPhotoVersion" : "NA"]
+                    postPics.setValue(createEmptyFirst)
+                    
+                    Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").setValue(createEmptyFirst)
+                    
+                    
                     print("((((((((((((nsnull if")
+                    
+                    print("0")
                     
                     var postFirstPics = [String : String]()
                     
+                    print("0.5")
+                    
                     if fileId == UDID {
-                        postFirstPics = ["userId" : UDID, "fullPhotoUrl" : "Updating", "fullPhotoVersion" : "Updating", "url" : url, "urlVersion" : version, "userId" : UDID]
+                        postFirstPics = ["userId" : UDID, "url" : url, "urlVersion" : version]
                     }
+                    
+                    print("1")
                     
                     if fileId == "\(UDID)full" {
-                        postFirstPics = ["userId" : UDID, "fullPhotoUrl" : url, "fullPhotoVersion" : version, "url" : "Updating", "urlVersion" : "Updating", "userId" : UDID]
+                        postFirstPics = ["userId" : UDID, "fullPhotoUrl" : url, "fullPhotoVersion" : version]
                     }
                     
-                    postPics.setValue(postFirstPics)
+                    print("2")
                     
-                    Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").setValue(postFirstPics)
+                    postPics.updateChildValues(postFirstPics)
+                    
+                    print("3")
+                    
+                    Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").updateChildValues(postFirstPics)
+                    
+                    print ("end if")
                     
                 }
                     
@@ -108,7 +127,7 @@ class UploadImage {
                         postNextPics = ["url" : url, "urlVersion" : version, "userId" : UDID]
                         postPics.updateChildValues(postNextPics)
                         
-                        Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").setValue(postNextPics)
+                        Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").updateChildValues(postNextPics)
                         
                     }
                     
