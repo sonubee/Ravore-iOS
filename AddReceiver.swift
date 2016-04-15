@@ -61,5 +61,13 @@ class AddReceiver {
         
         SendPush.methodToTest("Bracelet \(braceletSelected) Has Been Added!", messageReceiverId: braceletChosen.giverId, title: braceletSelected, type: "addition", braceletId: braceletSelected)
         
+        let addReceiverObject = ObjectBracelet(receiverId: UDID, giverId: braceletChosen.giverId, dateCreated: braceletChosen.dateCreated, dateReceived: shortDate, dateRegistered: braceletChosen.dateRegistered, braceletId: braceletChosen.braceletId)
+        
+        for (var i=0 ; i < allBracelets.count; i++) {
+            if allBracelets[i].braceletId == braceletSelected {
+                allBracelets[i] = addReceiverObject
+            }
+        }
+        
     }
 }
