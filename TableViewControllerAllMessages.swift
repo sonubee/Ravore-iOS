@@ -184,6 +184,8 @@ class TableViewControllerAllMessages: UITableViewController {
             deleteMessages.removeValue()
             registeredBracelets.removeAtIndex(indexPath.row)
             
+            Toast.makeToast("Deleted!").show()
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
