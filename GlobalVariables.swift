@@ -38,7 +38,7 @@ var useHeroku = ""
 var useBT = ""
 var useFirebase = ""
 
-let devStatus = "sandbox"
+let devStatus = "production"
 
 
 func getDocumentsURL() -> NSURL {
