@@ -124,7 +124,7 @@ class UploadImage {
                         
                         print ("Inside UDID-\(useFirebase)")
                         
-                        postNextPics = ["url" : url, "urlVersion" : version, "userId" : UDID]
+                        postNextPics = ["url" : url, "urlVersion" : version, "userId" : UDID, "userId" : UDID]
                         postPics.updateChildValues(postNextPics)
                         
                         Firebase(url: "\(useFirebase)UserInfo").childByAppendingPath(UDID).childByAppendingPath("ProfilePics").updateChildValues(postNextPics)

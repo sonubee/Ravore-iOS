@@ -105,6 +105,15 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         //HTTP Event Collector
         //Will start a new session if one is not active
         Mint.sharedInstance().initAndStartSessionWithHECUrl("HEC_URL", token: "HEC_TOKEN")
+        
+        //In order to send NSLOG in crash reports, enableLogging must be set to true
+        Mint.sharedInstance().enableLogging(true)
+        
+        //Set the number of NSLOG messages to send in the crash report
+        Mint.sharedInstance().setLogging(20)
+        
+        //Set some form of userIdentifier for this session
+        Mint.sharedInstance().userIdentifier = UDID
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
