@@ -19,6 +19,8 @@ class ViewControllerFullImage: UIViewController {
         
         fullImage.contentMode = .ScaleAspectFit
         
+        print("9999999999999999which image is: \(whichImage)")
+        
         if whichImage == UDID {
             if let tempImage = UIImage(contentsOfFile: imagePath) {
                 fullImage.image = tempImage

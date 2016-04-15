@@ -36,6 +36,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         setupImages()
         setupLabels()
     }
+
     
 
     override func didReceiveMemoryWarning() {
@@ -136,6 +137,8 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
     {
         print("///Giver Image Tapped")
         
+        braceletChosen = BraceletInfo().getBracelet(braceletSelected)
+        
         if braceletChosen.giverId == UDID {
             replaceGorR = "giver"
             
@@ -195,6 +198,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
     {
         
         print("///Receiver Image Tapped")
+        braceletChosen = BraceletInfo().getBracelet(braceletSelected)
         
         if braceletChosen.receiverId == UDID {
             replaceGorR = "receiver"
@@ -264,10 +268,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         
         for (var i=0; i < allBracelets.count; i++){
             if (braceletSelected == allBracelets[i].braceletId){
-                print("^^^^^^^^%%%%%%%%% before checking giver ID")
-                print(UDID)
-                print(allBracelets[i].giverId)
-                print(allBracelets[i].braceletId)
+           
                 if (allBracelets[i].giverId == UDID){
                     print("the giver ID matched UDID")
                     globalGiverId = UDID
