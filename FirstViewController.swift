@@ -96,6 +96,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         
         self.braceletIdFromLogin.delegate=self
         braceletIdFromLogin.keyboardType = UIKeyboardType.NumberPad
+        
+        //This will prevent Google Maps from Crashing
+        Mint.sharedInstance().disableNetworkMonitoring()
        
         //Initialize the SDK to use the MINT Backend to transport data
         //Will start a new session if one is not active
