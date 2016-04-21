@@ -1,5 +1,5 @@
 //
-//  TableViewControllerOrderBeads.swift
+//  TableViewControllerTest.swift
 //  Ravore2
 //
 //  Created by Admin on 4/20/16.
@@ -8,15 +8,21 @@
 
 import UIKit
 
-class TableViewControllerOrderBeads: UITableViewController {
+class TableViewControllerTest: UITableViewController {
     
-    var beadNames: [String] = ["Teddy Bear","Cat","Dog","Walrus","Octopus"]
+    var testString: [String] = ["Cat","Dog", "Teddy Bear", "Walrus","Octopus"]
+    var logoImage: [UIImage] = [
+        UIImage(named: "cat.png")!,
+        UIImage(named: "dog.png")!,
+        UIImage(named: "bear.png")!,
+        UIImage(named: "walrus.png")!,
+        UIImage(named: "octo.png")!
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Order Beads!!!")
-        print("Count is: \(beadNames.count)")
+        tableView.allowsSelection = false
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableData:", name: "reload", object: nil)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,24 +45,27 @@ class TableViewControllerOrderBeads: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return beadNames.count
+        return testString.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("testReuse", forIndexPath: indexPath) as! TableViewCellTest
         
-        print("Configuring Cell1")
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("orderBeadsCellId", forIndexPath: indexPath) as! TableViewCellOrderBeads
+        print("came to tablview!")
+        
+        cell.beadName.text = testString[indexPath.row]
+        cell.dollarAmount.text = "$1.00"
+        cell.cartCount.text = "Cart: \(cell.cartTotal)"
+        cell.beadImage.image = logoImage[indexPath.row]
 
         // Configure the cell...
-        
-        print("Configuring Cell2")
-        
-        cell.beadName.text = beadNames[indexPath.row]
-        cell.dollarAmount.text = "$1.00"
-        //cell.cartCount.text = "Cart: \(cell.cartTotal)"
 
         return cell
+    }
+    
+    func reloadTableData(notification: NSNotification) {
+        tableView.reloadData()
     }
     
 

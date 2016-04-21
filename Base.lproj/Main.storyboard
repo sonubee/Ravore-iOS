@@ -375,6 +375,85 @@
             </objects>
             <point key="canvasLocation" x="2914" y="390"/>
         </scene>
+        <!--Table View Controller Test-->
+        <scene sceneID="8kF-NN-agL">
+            <objects>
+                <tableViewController id="jXI-23-0OO" customClass="TableViewControllerTest" customModule="Ravore" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="EAd-HF-7x5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="testReuse" rowHeight="98" id="8bc-mO-CRK" customClass="TableViewCellTest" customModule="Ravore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="98"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bc-mO-CRK" id="u5k-RW-Lyh">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bead Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="561-MQ-WjS">
+                                            <rect key="frame" x="96" y="8" width="105" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.1757212965730568" green="1" blue="0.83705056839020053" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Bxq-k5-uxk">
+                                            <rect key="frame" x="8" y="9" width="80" height="80"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cart: #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9m-jc-ZMf">
+                                            <rect key="frame" x="96" y="68" width="71" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$#.##" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfU-kh-ryj">
+                                            <rect key="frame" x="236" y="68" width="76" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.46706599535823312" green="1" blue="0.91990948532474415" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBD-qz-rOl">
+                                            <rect key="frame" x="236" y="34" width="46" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <state key="normal" title="+">
+                                                <color key="titleColor" red="0.066604470081872647" green="1" blue="0.012143976280620139" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addBead:" destination="8bc-mO-CRK" eventType="touchUpInside" id="tK3-rF-TKd"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0M-WU-9QW">
+                                            <rect key="frame" x="165" y="38" width="27" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <state key="normal" title="-">
+                                                <color key="titleColor" red="1" green="0.028078071964938167" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="subtractBead:" destination="8bc-mO-CRK" eventType="touchUpInside" id="BMx-UO-Btp"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="beadImage" destination="Bxq-k5-uxk" id="rHs-aZ-eJn"/>
+                                    <outlet property="beadName" destination="561-MQ-WjS" id="bAG-zW-6hr"/>
+                                    <outlet property="cartCount" destination="V9m-jc-ZMf" id="NID-NN-x5i"/>
+                                    <outlet property="dollarAmount" destination="QfU-kh-ryj" id="P71-Aa-rTa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jXI-23-0OO" id="gOO-Bg-glI"/>
+                            <outlet property="delegate" destination="jXI-23-0OO" id="kLb-bz-bUg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="OmK-6q-gz0"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="upr-TU-lbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2934" y="1058"/>
+        </scene>
         <!--View Controller Full Image-->
         <scene sceneID="Prc-5C-NUo">
             <objects>
@@ -479,7 +558,7 @@
             </objects>
             <point key="canvasLocation" x="2508" y="-194"/>
         </scene>
-        <!--Table View Controller Order Beads-->
+        <!--Order Beads-->
         <scene sceneID="sGH-Ui-JAL">
             <objects>
                 <tableViewController id="Pgu-Ml-RwG" customClass="TableViewControllerOrderBeads" customModule="Ravore" customModuleProvider="target" sceneMemberID="viewController">
@@ -488,32 +567,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="aQq-3x-EDD">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderBeadsCellId" rowHeight="95" id="aQq-3x-EDD" customClass="TableViewCellOrderBeads" customModule="Ravore" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQq-3x-EDD" id="zY6-aC-vmr">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-Er-Iy9">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-Er-Iy9">
                                             <rect key="frame" x="8" y="9" width="75" height="75"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bead Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvi-KT-gyJ">
                                             <rect key="frame" x="94" y="8" width="99" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="1" blue="0.62466214252447649" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1E-bc-dZO">
-                                            <rect key="frame" x="128" y="36" width="21" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                            <color key="textColor" red="1" green="0.0" blue="0.074743433492410638" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWJ-9z-qcz">
-                                            <rect key="frame" x="260" y="36" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                            <color key="textColor" red="0.26319838340847257" green="1" blue="0.014201430231163825" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$#.##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvk-s5-Rvv">
@@ -523,14 +590,42 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cart: #" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43O-ct-H8k">
-                                            <rect key="frame" x="94" y="64" width="81" height="21"/>
+                                            <rect key="frame" x="94" y="64" width="61" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXf-iG-9yg">
+                                            <rect key="frame" x="101" y="32" width="46" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <state key="normal" title="-">
+                                                <color key="titleColor" red="1" green="0.0" blue="0.093322322275342984" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="subtractBead:" destination="aQq-3x-EDD" eventType="touchUpInside" id="Fd1-e6-6wt"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuf-iQ-WyT">
+                                            <rect key="frame" x="263" y="32" width="46" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <state key="normal" title="+">
+                                                <color key="titleColor" red="0.19570728207683774" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addBead:" destination="aQq-3x-EDD" eventType="touchUpInside" id="Obj-2J-rhf"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addBead" destination="Yuf-iQ-WyT" id="oNc-oJ-uvJ"/>
+                                    <outlet property="beadImage" destination="Rhm-Er-Iy9" id="bTM-QX-TFi"/>
+                                    <outlet property="beadName" destination="gvi-KT-gyJ" id="u2j-pp-4zK"/>
+                                    <outlet property="cartCount" destination="43O-ct-H8k" id="qje-t4-RY8"/>
+                                    <outlet property="dollarAmount" destination="vvk-s5-Rvv" id="Nsi-bJ-i2w"/>
+                                    <outlet property="subtractBead" destination="SXf-iG-9yg" id="EsX-gq-9pc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -538,10 +633,11 @@
                             <outlet property="delegate" destination="Pgu-Ml-RwG" id="Kew-Fc-vl6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Order Beads" id="Wnl-fa-8FR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cd-Z0-l76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="434"/>
+            <point key="canvasLocation" x="3042" y="1586"/>
         </scene>
         <!--Order Ravore-->
         <scene sceneID="wg7-f3-ORb">
@@ -845,7 +941,13 @@
                             <outlet property="delegate" destination="8Ur-py-NAp" id="gDZ-c9-oKy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Order Status" id="Jl7-2q-kJw"/>
+                    <navigationItem key="navigationItem" title="Order Status" id="Jl7-2q-kJw">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="4Fm-u6-Ndl">
+                            <connections>
+                                <segue destination="jXI-23-0OO" kind="push" id="4tj-fO-xFx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqC-sV-emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -907,7 +1009,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mib-eV-C5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2870" y="1400"/>
+            <point key="canvasLocation" x="3384" y="1936"/>
         </scene>
         <!--View Controller Ravore Image-->
         <scene sceneID="HRa-au-DXP">
@@ -1109,7 +1211,7 @@
         <image name="ravore1" width="1425" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bcR-tZ-eOr"/>
+        <segue reference="uMf-xp-bfv"/>
         <segue reference="zFS-B6-bME"/>
     </inferredMetricsTieBreakers>
 </document>
