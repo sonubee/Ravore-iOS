@@ -105,7 +105,7 @@ extension FirstViewController {
             
         })
         
-        let getAllOrders = Firebase(url:useFirebase+"Orders")
+        let getAllOrders = Firebase(url:useFirebase+"Orders1")
         
         getAllOrders.observeEventType(.ChildAdded, withBlock: { snapshot in
             
@@ -123,8 +123,13 @@ extension FirstViewController {
             let subtotalPrice = snapshot.value.objectForKey("subtotalPrice") as! Int
             let suiteApt = snapshot.value.objectForKey("suiteApt") as! String
             let totalPrice = snapshot.value.objectForKey("totalPrice") as! Double
+            let cat = snapshot.value.objectForKey("cat") as! Int
+            let dog = snapshot.value.objectForKey("dog") as! Int
+            let teddyBear = snapshot.value.objectForKey("teddyBear") as! Int
+            let walrus = snapshot.value.objectForKey("walrus") as! Int
+            let octopus = snapshot.value.objectForKey("octopus") as! Int
             
-            let downloadOrder = ObjectOrders(kandiCount: kandiCount, beadCount: beadCount, subtotalPrice: subtotalPrice, shippingPrice: shippingPrice, totalPrice: totalPrice, orderNumber: orderNumber, os: os, address: address, date: date, email: email, fullName: fullName, suiteApt: suiteApt, status: status, deviceId: deviceId)
+            let downloadOrder = ObjectOrders(kandiCount: kandiCount, beadCount: beadCount, subtotalPrice: subtotalPrice, shippingPrice: shippingPrice, totalPrice: totalPrice, orderNumber: orderNumber, os: os, address: address, date: date, email: email, fullName: fullName, suiteApt: suiteApt, status: status, deviceId: deviceId, cat: cat, dog: dog, walrus: walrus, octopus: octopus, teddyBear: teddyBear)
             
             if downloadOrder.deviceId == UDID {
                 allOrders.append(downloadOrder)

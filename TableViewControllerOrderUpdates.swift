@@ -46,10 +46,10 @@ class TableViewControllerOrderUpdates: UITableViewController {
 
         // Configure the cell...
         
-        
-        cell.kandiCount.text = "\(allOrders[indexPath.row].kandiCount)"
         cell.beadCount.text = "\(allOrders[indexPath.row].beadCount)"
-        cell.totalAmount.text = "Total: $\(allOrders[indexPath.row].totalPrice)"
+        //cell.totalAmount.text = "Total: $\(allOrders[indexPath.row].totalPrice)"
+        cell.totalAmount.text = "Total: $\(String.localizedStringWithFormat("%.2f %@", allOrders[indexPath.row].totalPrice, ""))"
+        
         cell.orderStatus.text = "Status: \(allOrders[indexPath.row].status)"
         cell.orderNumber.text = "Order Number: \(allOrders[indexPath.row].orderNumber)"
         

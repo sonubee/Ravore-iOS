@@ -10,12 +10,10 @@ import UIKit
 
 class TableViewCellOrderStatus: UITableViewCell {
 
-    @IBOutlet weak var kandiCount: UILabel!
     @IBOutlet weak var beadCount: UILabel!
     @IBOutlet weak var totalAmount: UILabel!
     @IBOutlet weak var orderStatus: UILabel!
     @IBOutlet weak var beadImage: UIImageView!
-    @IBOutlet weak var kandiImage: UIImageView!
     @IBOutlet weak var orderNumber: UILabel!
     
     override func awakeFromNib() {

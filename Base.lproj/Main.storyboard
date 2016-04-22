@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller How It Works-->
@@ -181,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="990" y="-194"/>
+            <point key="canvasLocation" x="2246" y="-884"/>
         </scene>
         <!--View Controller Fake Modal-->
         <scene sceneID="Bun-bz-2F3">
@@ -198,14 +199,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="zGE-Hn-bg4"/>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="push" identifier="goToOrder" id="bcR-tZ-eOr"/>
+                        <segue destination="jXI-23-0OO" kind="push" identifier="goToOrder" id="eRR-Mo-eNj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXQ-Tp-1Sj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1522" y="1072"/>
+            <point key="canvasLocation" x="1496" y="662"/>
         </scene>
-        <!--All Messages-->
+        <!--All Bracelets-->
         <scene sceneID="bhx-H3-A1O">
             <objects>
                 <tableViewController id="5id-IC-93a" customClass="TableViewControllerAllMessages" customModule="Ravore" customModuleProvider="target" sceneMemberID="viewController">
@@ -254,10 +255,10 @@
                             <outlet property="delegate" destination="5id-IC-93a" id="xc9-Kl-I8f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Messages" id="sBH-Ka-rkx">
+                    <navigationItem key="navigationItem" title="All Bracelets" id="sBH-Ka-rkx">
                         <barButtonItem key="leftBarButtonItem" title="Ravore" id="yAF-cB-nl5">
                             <connections>
-                                <segue destination="8rJ-Kc-sve" kind="push" id="uMf-xp-bfv"/>
+                                <segue destination="jXI-23-0OO" kind="push" id="1Oe-VX-Pr9"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Uy0-m9-5cY">
@@ -373,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yUw-SE-jdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2914" y="390"/>
+            <point key="canvasLocation" x="2948" y="754"/>
         </scene>
         <!--Table View Controller Test-->
         <scene sceneID="8kF-NN-agL">
@@ -382,7 +383,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="EAd-HF-7x5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="testReuse" rowHeight="98" id="8bc-mO-CRK" customClass="TableViewCellTest" customModule="Ravore" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="98"/>
@@ -449,16 +451,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="OmK-6q-gz0">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="MLZ-Q4-T2H">
-                            <connections>
-                                <segue destination="NcK-x9-kTi" kind="push" id="Uha-OB-1vy"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Purchase" id="MLZ-Q4-T2H">
+                                <connections>
+                                    <segue destination="NcK-x9-kTi" kind="push" id="Uha-OB-1vy"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Order Status" id="hD2-4N-0Xb">
+                                <connections>
+                                    <segue destination="8Ur-py-NAp" kind="push" id="Ggd-tk-ZQg"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upr-TU-lbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2934" y="1058"/>
+            <point key="canvasLocation" x="1974" y="668"/>
         </scene>
         <!--View Controller Full Image-->
         <scene sceneID="Prc-5C-NUo">
@@ -643,7 +652,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cd-Z0-l76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="2164"/>
+            <point key="canvasLocation" x="3026" y="2020"/>
         </scene>
         <!--Order Ravore-->
         <scene sceneID="wg7-f3-ORb">
@@ -861,69 +870,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044" y="662"/>
+            <point key="canvasLocation" x="1930" y="1596"/>
         </scene>
         <!--Order Status-->
         <scene sceneID="15L-4F-rvt">
             <objects>
                 <tableViewController id="8Ur-py-NAp" customClass="TableViewControllerOrderUpdates" customModule="Ravore" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="171" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pax-6f-69O">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pax-6f-69O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderStatusRowDetails" rowHeight="171" id="JEh-bQ-Wlo" customClass="TableViewCellOrderStatus" customModule="Ravore" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="171"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderStatusRowDetails" rowHeight="97" id="JEh-bQ-Wlo" customClass="TableViewCellOrderStatus" customModule="Ravore" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JEh-bQ-Wlo" id="VAy-eN-1bp">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Order ############" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61U-QH-hoc">
-                                            <rect key="frame" x="70" y="0.0" width="242" height="21"/>
+                                            <rect key="frame" x="70" y="8" width="242" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.94597444451151858" green="1" blue="0.35087875828443571" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Processing" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lom-oU-wdi">
-                                            <rect key="frame" x="187" y="141" width="125" height="21"/>
+                                            <rect key="frame" x="187" y="46" width="125" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.22170325436398386" green="1" blue="0.023430337817016977" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_small" translatesAutoresizingMaskIntoConstraints="NO" id="QAu-bw-IBh">
-                                            <rect key="frame" x="8" y="7" width="103" height="54"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bf_color2_70x90" translatesAutoresizingMaskIntoConstraints="NO" id="8n2-mJ-Wgf">
-                                            <rect key="frame" x="8" y="80" width="78" height="54"/>
+                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="all" translatesAutoresizingMaskIntoConstraints="NO" id="8n2-mJ-Wgf">
+                                            <rect key="frame" x="8" y="8" width="78" height="54"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: $#.##" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRC-fu-GSF">
-                                            <rect key="frame" x="234" y="123" width="78" height="21"/>
+                                            <rect key="frame" x="234" y="28" width="78" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.22170325436398386" green="1" blue="0.023430337817016977" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beads: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PN-oz-7pI">
+                                            <rect key="frame" x="104" y="41" width="113" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.36921633576595791" green="0.46047446037586226" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqX-yH-SDO">
-                                            <rect key="frame" x="228" y="96" width="21" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="0.069804806813929865" green="1" blue="0.91120522748679189" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kandi (Set of 3): " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sI-7o-oUy">
-                                            <rect key="frame" x="119" y="23" width="113" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.36921633576595791" green="0.46047446037586226" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beads (Set of 3): " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PN-oz-7pI">
-                                            <rect key="frame" x="119" y="96" width="113" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.36921633576595791" green="0.46047446037586226" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAl-6f-7CD">
-                                            <rect key="frame" x="228" y="23" width="21" height="21"/>
+                                            <rect key="frame" x="150" y="42" width="21" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.069804806813929865" green="1" blue="0.91120522748679189" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -934,8 +928,6 @@
                                 <connections>
                                     <outlet property="beadCount" destination="NqX-yH-SDO" id="d1d-vT-vYa"/>
                                     <outlet property="beadImage" destination="8n2-mJ-Wgf" id="OrL-dM-9TW"/>
-                                    <outlet property="kandiCount" destination="FAl-6f-7CD" id="wCs-7P-vOa"/>
-                                    <outlet property="kandiImage" destination="QAu-bw-IBh" id="Jji-Qv-4fW"/>
                                     <outlet property="orderNumber" destination="61U-QH-hoc" id="zoh-tQ-THr"/>
                                     <outlet property="orderStatus" destination="Lom-oU-wdi" id="0Os-lq-p6a"/>
                                     <outlet property="totalAmount" destination="LRC-fu-GSF" id="v8s-pV-Dhe"/>
@@ -947,17 +939,11 @@
                             <outlet property="delegate" destination="8Ur-py-NAp" id="gDZ-c9-oKy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Order Status" id="Jl7-2q-kJw">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="4Fm-u6-Ndl">
-                            <connections>
-                                <segue destination="jXI-23-0OO" kind="push" id="4tj-fO-xFx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Order Status" id="Jl7-2q-kJw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqC-sV-emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2508" y="1400"/>
+            <point key="canvasLocation" x="3026" y="-288"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="Ozn-yK-kaA">
@@ -1015,7 +1001,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mib-eV-C5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3384" y="1936"/>
+            <point key="canvasLocation" x="3432" y="1236"/>
         </scene>
         <!--View Controller Ravore Image-->
         <scene sceneID="HRa-au-DXP">
@@ -1049,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QfO-65-cqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2044" y="1400"/>
+            <point key="canvasLocation" x="2584" y="2036"/>
         </scene>
         <!--Enter Shipping Info-->
         <scene sceneID="keR-js-IUF">
@@ -1212,8 +1198,9 @@
         <image name="ravore1" width="1425" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zFS-B6-bME"/>
-        <segue reference="uMf-xp-bfv"/>
+        <segue reference="eRR-Mo-eNj"/>
+        <segue reference="Ggd-tk-ZQg"/>
         <segue reference="Uha-OB-1vy"/>
+        <segue reference="zFS-B6-bME"/>
     </inferredMetricsTieBreakers>
 </document>

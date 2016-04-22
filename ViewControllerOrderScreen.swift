@@ -56,6 +56,7 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     func dropInViewController(viewController: BTDropInViewController, didSucceedWithTokenization paymentMethodNonce: BTPaymentMethodNonce){
         //Toast.makeToast("Your order has been placed and will arrive in 5 Days").show()
         purchaseMade = true
+        cameFromHome = false
         // Send payment method nonce to your server for processing
         putOrderOnFirebase()
         
@@ -162,10 +163,11 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
         
         print(cartMap)
         
-        
         //let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPrice, "os" : "iOS", "date" : shortDate, "beadCount" : beadCount, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shippingPrice, "status" : "Processing", "subtotalPrice" : subtotalPrice]
         
-        let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPriceNew, "os" : "iOS", "date" : shortDate, "beadCount" : totalBeads, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shipping, "status" : "Processing", "subtotalPrice" : "\(totalBeads)", "cat" : String(cartMap["Cat"]!), "dog" : String(cartMap["Dog"]!), "walrus" : String(cartMap["Walrus"]!), "octopus" : String(cartMap["Octopus"]!), "teddyBear" : String(cartMap["Teddy Bear"]!)]
+        //let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPriceNew, "os" : "iOS", "date" : shortDate, "beadCount" : totalBeads, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shipping, "status" : "Processing", "subtotalPrice" : "\(totalBeads)", "cat" : String(cartMap["Cat"]!), "dog" : String(cartMap["Dog"]!), "walrus" : String(cartMap["Walrus"]!), "octopus" : String(cartMap["Octopus"]!), "teddyBear" : String(cartMap["Teddy Bear"]!)]
+        
+        let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPriceNew, "os" : "iOS", "date" : shortDate, "beadCount" : totalBeads, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shipping, "status" : "Processing", "subtotalPrice" : totalBeads, "cat" : cartMap["Cat"]!, "dog" : cartMap["Dog"]!, "walrus" : cartMap["Walrus"]!, "octopus" : cartMap["Octopus"]!, "teddyBear" : cartMap["Teddy Bear"]!]
         
         
         //let postOrder = Firebase(url:useFirebase+"Orders")
