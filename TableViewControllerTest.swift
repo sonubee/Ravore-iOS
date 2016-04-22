@@ -80,7 +80,6 @@ class TableViewControllerTest: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("testReuse", forIndexPath: indexPath) as! TableViewCellTest
         
-        print("came to tablview!")
         
         cell.beadName.text = testString[indexPath.row]
         cell.dollarAmount.text = "$1.00"
@@ -102,6 +101,16 @@ class TableViewControllerTest: UITableViewController {
     
     func subtractTotalBead(notification: NSNotification) {totalBeads -= 1}
     
+    @IBAction func purchaseButton(sender: UIBarButtonItem) {
+        
+        if totalBeads > 4 {
+            self.performSegueWithIdentifier("enterShipping", sender: self)
+        }
+        
+        else {
+            Toast.makeToast("Minimum Order of 5 to have effective shipping").show()
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -40,7 +40,7 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     }
     
     func calculateShippingAndTotal(){
-        shipping = 2.45 + (Double(totalBeads) * 0.05)
+        shipping = 2.45 + (Double(totalBeads-5) * 0.05)
         
         totalPriceNew = Double(totalBeads) + shipping
         

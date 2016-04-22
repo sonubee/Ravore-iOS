@@ -19,7 +19,12 @@ class ViewControllerFakeModal: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        print("came from home is: \(cameFromHome)")
+        
         if cameFromHome {
+            print("%%%%%going to order")
+            cameFromHome = false
             performSegueWithIdentifier("goToOrder", sender: self)
         }
             

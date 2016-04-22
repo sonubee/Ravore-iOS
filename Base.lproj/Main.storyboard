@@ -454,7 +454,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Purchase" id="MLZ-Q4-T2H">
                                 <connections>
-                                    <segue destination="NcK-x9-kTi" kind="push" id="Uha-OB-1vy"/>
+                                    <action selector="purchaseButton:" destination="jXI-23-0OO" id="KfP-zI-Kdl"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Order Status" id="hD2-4N-0Xb">
@@ -464,6 +464,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="NcK-x9-kTi" kind="push" identifier="enterShipping" id="Ut8-zl-bsY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upr-TU-lbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1198,9 +1201,9 @@
         <image name="ravore1" width="1425" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zFS-B6-bME"/>
         <segue reference="eRR-Mo-eNj"/>
         <segue reference="Ggd-tk-ZQg"/>
-        <segue reference="Uha-OB-1vy"/>
-        <segue reference="zFS-B6-bME"/>
+        <segue reference="Ut8-zl-bsY"/>
     </inferredMetricsTieBreakers>
 </document>
