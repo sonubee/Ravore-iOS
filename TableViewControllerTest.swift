@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewControllerTest: UITableViewController {
     
+    var totalBeads:Int = 0
+    
     var testString: [String] = ["Cat","Dog", "Teddy Bear", "Walrus","Octopus"]
     var logoImage: [UIImage] = [
         UIImage(named: "cat.png")!,
@@ -23,6 +25,10 @@ class TableViewControllerTest: UITableViewController {
         super.viewDidLoad()
         tableView.allowsSelection = false
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableData:", name: "reload", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addTotalBead:", name: "addBead", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "subtractTotalBead:", name: "subtractBead", object: nil)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,6 +72,14 @@ class TableViewControllerTest: UITableViewController {
     
     func reloadTableData(notification: NSNotification) {
         tableView.reloadData()
+    }
+    
+    func addTotalBead(notification: NSNotification) {
+        totalBeads += 1
+    }
+    
+    func subtractTotalBead(notification: NSNotification) {
+        totalBeads -= 1
     }
     
 

@@ -448,7 +448,13 @@
                             <outlet property="delegate" destination="jXI-23-0OO" id="kLb-bz-bUg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="OmK-6q-gz0"/>
+                    <navigationItem key="navigationItem" id="OmK-6q-gz0">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="MLZ-Q4-T2H">
+                            <connections>
+                                <segue destination="NcK-x9-kTi" kind="push" id="Uha-OB-1vy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="upr-TU-lbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,7 +643,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cd-Z0-l76" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3042" y="1586"/>
+            <point key="canvasLocation" x="2786" y="2164"/>
         </scene>
         <!--Order Ravore-->
         <scene sceneID="wg7-f3-ORb">
@@ -1211,7 +1217,8 @@
         <image name="ravore1" width="1425" height="400"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uMf-xp-bfv"/>
         <segue reference="zFS-B6-bME"/>
+        <segue reference="uMf-xp-bfv"/>
+        <segue reference="Uha-OB-1vy"/>
     </inferredMetricsTieBreakers>
 </document>
