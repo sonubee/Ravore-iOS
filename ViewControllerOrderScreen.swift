@@ -160,10 +160,16 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
             return dateFormatter.stringFromDate(NSDate())
         }
         
+        print(cartMap)
         
-        let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPrice, "os" : "iOS", "date" : shortDate, "beadCount" : beadCount, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shippingPrice, "status" : "Processing", "subtotalPrice" : subtotalPrice]
         
-        let postOrder = Firebase(url:useFirebase+"Orders")
+        //let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPrice, "os" : "iOS", "date" : shortDate, "beadCount" : beadCount, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shippingPrice, "status" : "Processing", "subtotalPrice" : subtotalPrice]
+        
+        let postNewOrder = ["address": address, "email": receiptOutlet.text!, "fullName" : fullName.text! , "suiteApt" : suiteApt.text!, "totalPrice" : totalPriceNew, "os" : "iOS", "date" : shortDate, "beadCount" : totalBeads, "kandiCount" : kandiCount, "deviceId" : UDID, "orderNumber" : orderNumber, "shippingPrice" : shipping, "status" : "Processing", "subtotalPrice" : "\(totalBeads)", "cat" : String(cartMap["Cat"]!), "dog" : String(cartMap["Dog"]!), "walrus" : String(cartMap["Walrus"]!), "octopus" : String(cartMap["Octopus"]!), "teddyBear" : String(cartMap["Teddy Bear"]!)]
+        
+        
+        //let postOrder = Firebase(url:useFirebase+"Orders")
+        let postOrder = Firebase(url:useFirebase+"Orders1")
         postOrder.childByAutoId().setValue(postNewOrder)
     
     }

@@ -8,13 +8,21 @@
 
 var totalBeads = 0
 
+var cartMap: [String:Int] = [
+    "Cat":0,
+    "Dog":0,
+    "Teddy Bear":0,
+    "Walrus":0,
+    "Octopus":0
+]
+
+
 import UIKit
 
 
 class TableViewControllerTest: UITableViewController {
-
-    
-    var testString: [String] = ["Cat","Dog", "Teddy Bear", "Walrus","Octopus"]
+  
+    var testString: [String] = ["Cat" , "Dog" , "Teddy Bear" , "Walrus" , "Octopus"]
     var logoImage: [UIImage] = [
         UIImage(named: "cat.png")!,
         UIImage(named: "dog.png")!,
@@ -22,6 +30,8 @@ class TableViewControllerTest: UITableViewController {
         UIImage(named: "walrus.png")!,
         UIImage(named: "octo.png")!
     ]
+    
+    var allCarts = [Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +41,14 @@ class TableViewControllerTest: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addTotalBead:", name: "addBead", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "subtractTotalBead:", name: "subtractBead", object: nil)
+        
+        cartMap = [
+            "Cat":0,
+            "Dog":0,
+            "Teddy Bear":0,
+            "Walrus":0,
+            "Octopus":0
+        ]
         
         totalBeads = 0
 
@@ -68,8 +86,12 @@ class TableViewControllerTest: UITableViewController {
         cell.dollarAmount.text = "$1.00"
         cell.cartCount.text = "Cart: \(cell.cartTotal)"
         cell.beadImage.image = logoImage[indexPath.row]
+        
+        cartMap[testString[indexPath.row]] = cell.cartTotal
 
         // Configure the cell...
+        
+        //print(cartMap)
 
         return cell
     }
