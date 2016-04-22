@@ -33,13 +33,15 @@ class TableViewCellTest: UITableViewCell {
         cartTotal += 1
         print("adding \(cartTotal)")
         NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("addBead", object: nil)
     }
     
     @IBAction func subtractBead(sender: UIButton) {
-        if cartTotal > 0{
+        if cartTotal > 0 {
             cartTotal -= 1
             print("subtracting \(cartTotal)")
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("subtractBead", object: nil)
         }        
     }
 }

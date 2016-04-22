@@ -6,11 +6,13 @@
 //  Copyright © 2016 G LLC. All rights reserved.
 //
 
+var totalBeads = 0
+
 import UIKit
 
+
 class TableViewControllerTest: UITableViewController {
-    
-    var totalBeads:Int = 0
+
     
     var testString: [String] = ["Cat","Dog", "Teddy Bear", "Walrus","Octopus"]
     var logoImage: [UIImage] = [
@@ -29,6 +31,8 @@ class TableViewControllerTest: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addTotalBead:", name: "addBead", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "subtractTotalBead:", name: "subtractBead", object: nil)
+        
+        totalBeads = 0
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -70,17 +74,11 @@ class TableViewControllerTest: UITableViewController {
         return cell
     }
     
-    func reloadTableData(notification: NSNotification) {
-        tableView.reloadData()
-    }
+    func reloadTableData(notification: NSNotification) {tableView.reloadData()}
     
-    func addTotalBead(notification: NSNotification) {
-        totalBeads += 1
-    }
+    func addTotalBead(notification: NSNotification) {totalBeads += 1}
     
-    func subtractTotalBead(notification: NSNotification) {
-        totalBeads -= 1
-    }
+    func subtractTotalBead(notification: NSNotification) {totalBeads -= 1}
     
 
     /*

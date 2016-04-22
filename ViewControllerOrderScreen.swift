@@ -8,6 +8,9 @@ var address = ""
 import UIKit
 
 class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegate {
+    
+    var shipping = 2.45
+    var totalPriceNew = 0.0
 
    var braintreeClient: BTAPIClient!
     
@@ -16,18 +19,34 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     @IBOutlet weak var placesButton: UIButton!
     @IBOutlet weak var amountButtonOutlet: UIButton!
     @IBOutlet weak var receiptOutlet: UITextField!
-    @IBOutlet weak var beadCountDisplay: UILabel!
-    @IBOutlet weak var braceletCountDisplay: UILabel!
+    @IBOutlet weak var totalBeadsLabel: UILabel!
+    @IBOutlet weak var subtotalDisplay: UILabel!
+    @IBOutlet weak var shippingDisplay: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        amountButtonOutlet.setTitle(("$"+String.localizedStringWithFormat("%.2f %@", totalPrice, "")), forState: UIControlState.Normal)
+
         wakeUpServer()
+        calculateShippingAndTotal()
         
-        braceletCountDisplay.text = "\(kandiCount)"
-        beadCountDisplay.text = "\(beadCount)"
+        print("Total Beads: \(totalBeads)")
+        
+        totalBeadsLabel.text = "Total Beads: \(totalBeads)"
+        subtotalDisplay.text = "Subtotal: $\(totalBeads).00"
+        shippingDisplay.text = "Shipping: $\(String.localizedStringWithFormat("%.2f %@", shipping, ""))"
+        amountButtonOutlet.setTitle(("$"+String.localizedStringWithFormat("%.2f %@", totalPriceNew, "")), forState: UIControlState.Normal)
+
     }
+    
+    func calculateShippingAndTotal(){
+        shipping = 2.45 + (Double(totalBeads) * 0.05)
+        
+        totalPriceNew = Double(totalBeads) + shipping
+        
+        print("total price = \(totalPriceNew)")
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,7 +83,7 @@ class ViewControllerOrderScreen: UIViewController, BTDropInViewControllerDelegat
     
     func postNonceToServer(paymentMethodNonce: String) {
         
-        let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPrice)&devProd=\(devStatus)"
+        let sendBody = "payment_method_nonce=\(paymentMethodNonce)&email=\(receiptOutlet.text!)&amount=\(totalPriceNew)&devProd=\(devStatus)"
         
         SendServerRequest.sendRequest("\(useHeroku)checkout", body: sendBody)
         
