@@ -113,9 +113,12 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         let baseURL = Firebase(url:useFirebase+"Messages")
         let braceletRef = baseURL.childByAppendingPath(braceletSelected)
         
+        let newBaseUrl = Firebase(url:useFirebase).childByAppendingPath("IDs").childByAppendingPath(braceletSelected).childByAppendingPath("1").childByAppendingPath("Messages")
+        
         let theMessage = ["braceletId": braceletSelected, "date" : shortDate, "message" : message, "sender" : UDID, "timestamp" : shortDate]
         
         braceletRef.childByAutoId().setValue(theMessage)
+        newBaseUrl.childByAutoId().setValue(theMessage)
         messageBox.text = ""
         
         //Sending Push Here
@@ -261,14 +264,13 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
         else {receiverLabel.text = "You"}
     }
     
-    
     func setupImages(){
         
         print("beginning of images")
         
         for (var i=0; i < allBracelets.count; i++){
             if (braceletSelected == allBracelets[i].braceletId){
-           
+                
                 if (allBracelets[i].giverId == UDID){
                     print("the giver ID matched UDID")
                     globalGiverId = UDID
@@ -363,6 +365,7 @@ class ViewControllerMessaging: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
+   
  
     
 }

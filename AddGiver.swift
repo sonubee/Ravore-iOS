@@ -46,7 +46,13 @@ class AddGiver {
         let postGiver = Firebase(url:useFirebase+"Bracelets")
         
         let postNewGiver = ["giverId": UDID, "dateRegistered": shortDate, "receiverId" : "NA" , "dateCreated" : braceletChosen.dateCreated, "braceletId" : braceletChosen.braceletId, "dateReceived" : "NA"]
+        
+        let postNewGiver2 = ["giverId": UDID, "dateRegistered": shortDate, "receiverId" : "NA" , "dateCreated" : braceletChosen.dateCreated, "braceletId" : braceletChosen.braceletId, "dateReceived" : "NA", "transferNumber" : 1]
+        
         postGiver.childByAppendingPath(firebaseKey).setValue(postNewGiver)
+        
+        let postNewWay = Firebase(url: useFirebase).childByAppendingPath("IDs").childByAppendingPath(braceletSelected).childByAppendingPath("1").childByAppendingPath("Info")
+        postNewWay.setValue(postNewGiver2)
         
         if devStatus == "production"{
             let sendBody = "braceletId=\(braceletId)"
@@ -56,6 +62,8 @@ class AddGiver {
         registeredBracelets.append(braceletChosen)
         
         let addGiverObject = ObjectBracelet(receiverId: "NA", giverId: UDID, dateCreated: braceletChosen.dateCreated, dateReceived: "NA", dateRegistered: shortDate, braceletId: braceletChosen.braceletId)
+        
+        let addGiverObject2 = ObjectBracelet2(receiverId: "NA", giverId: UDID, dateCreated: braceletChosen.dateCreated, dateReceived: "NA", dateRegistered: shortDate, braceletId: braceletChosen.braceletId, transferNumber : 1)
         
         for (var i=0 ; i < allBracelets.count; i++) {
             if allBracelets[i].braceletId == braceletSelected {

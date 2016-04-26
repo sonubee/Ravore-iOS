@@ -55,13 +55,21 @@ class AddReceiver {
         
         let postNewReceiver = ["giverId": braceletChosen.giverId, "dateRegistered": braceletChosen.dateRegistered, "receiverId" : UDID , "dateCreated" : braceletChosen.dateCreated, "braceletId" : braceletChosen.braceletId, "dateReceived" : shortDate]
         
+        let postNewReceiver2 = ["giverId": braceletChosen.giverId, "dateRegistered": braceletChosen.dateRegistered, "receiverId" : UDID , "dateCreated" : braceletChosen.dateCreated, "braceletId" : braceletChosen.braceletId, "dateReceived" : shortDate, "transferNumber" : 1]
+        
+        
         postReceiver.childByAppendingPath(firebaseKey).setValue(postNewReceiver)
+        
+        let postNewWay = Firebase(url: useFirebase).childByAppendingPath("IDs").childByAppendingPath(braceletSelected).childByAppendingPath("1").childByAppendingPath("Info")
+        postNewWay.setValue(postNewReceiver2)
         
         registeredBracelets.append(braceletChosen)
         
         SendPush.methodToTest("Bracelet \(braceletSelected) Has Been Added!", messageReceiverId: braceletChosen.giverId, title: braceletSelected, type: "addition", braceletId: braceletSelected)
         
         let addReceiverObject = ObjectBracelet(receiverId: UDID, giverId: braceletChosen.giverId, dateCreated: braceletChosen.dateCreated, dateReceived: shortDate, dateRegistered: braceletChosen.dateRegistered, braceletId: braceletChosen.braceletId)
+        
+        let addReceiverObject2 = ObjectBracelet2(receiverId: UDID, giverId: braceletChosen.giverId, dateCreated: braceletChosen.dateCreated, dateReceived: shortDate, dateRegistered: braceletChosen.dateRegistered, braceletId: braceletChosen.braceletId, transferNumber : 1)
         
         for (var i=0 ; i < allBracelets.count; i++) {
             if allBracelets[i].braceletId == braceletSelected {

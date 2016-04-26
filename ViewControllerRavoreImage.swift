@@ -23,8 +23,6 @@ class ViewControllerRavoreImage: UIViewController {
             imageView!.image = UIImage(named: "bg_medium")
         }
         
-     
-        
         // Do any additional setup after loading the view.
     }
 
