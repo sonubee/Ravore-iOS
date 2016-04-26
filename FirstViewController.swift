@@ -7,11 +7,13 @@ import SplunkMint
 class FirstViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var braceletIdFromLogin: UITextField!
+    @IBOutlet weak var howItWorksButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         downloadObjects()
+        howItWorksButton.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
