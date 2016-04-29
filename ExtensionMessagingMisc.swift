@@ -3,14 +3,18 @@ import Foundation
 import Firebase
 import AirshipKit
 import Toucan
+/*
+let braceletGo = braceletSelected
+var messageUrl = useFirebase + "Messages/"
+messageUrl += braceletGo
+
+//getMessages =
+*/
+let firebaseMessage = Firebase(url:useFirebase).childByAppendingPath("Messages").childByAppendingPath(braceletSelected)
 
 extension ViewControllerMessaging {
     
-    
-    
     func downloadObjects() {
-        
-
         
         let braceletGo = braceletSelected
         var messageUrl = useFirebase + "Messages/"
@@ -18,7 +22,7 @@ extension ViewControllerMessaging {
         
         //getMessages =
         
-        Firebase(url:messageUrl).observeEventType(.ChildAdded, withBlock: { snapshot in
+        firebaseMessage.observeEventType(.ChildAdded, withBlock: { snapshot in
             
             let message = snapshot.value.objectForKey("message") as! String
             let sender = snapshot.value.objectForKey("sender") as! String
@@ -28,6 +32,8 @@ extension ViewControllerMessaging {
             
             let downloadMessage = ObjectMessage(message: message, sender: sender, date: date, braceletId: braceletId, timestamp: timestamp)
             arrayOfMessages.append(downloadMessage)
+            
+            print("Message Text is: \(downloadMessage.message)")
             
             self.tableView.reloadData()
             
@@ -72,8 +78,12 @@ extension ViewControllerMessaging {
         return documentsDirectory
     }
     
-
     
-    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            print("Back Pressed")
+            firebaseMessage.removeAllObservers()
+        }
+    }
 
 }
