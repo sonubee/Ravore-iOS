@@ -452,6 +452,7 @@
                     <navigationItem key="navigationItem" id="UR4-iW-XDb"/>
                     <connections>
                         <outlet property="dateTextField" destination="8MQ-Tx-ZDE" id="bfG-7T-dDU"/>
+                        <outlet property="kandiLabel" destination="Jds-px-G4L" id="arB-P1-M3L"/>
                         <outlet property="storyTextField" destination="xwF-fa-oMi" id="PC7-fi-79M"/>
                         <outlet property="whereTextField" destination="DhV-sd-9c1" id="H2l-u0-Szp"/>
                     </connections>

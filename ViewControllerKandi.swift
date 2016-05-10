@@ -14,9 +14,12 @@ class ViewControllerKandi: UIViewController {
     @IBOutlet weak var storyTextField: UITextField!
     @IBOutlet weak var whereTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var kandiLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        kandiLabel.text = "Kandi \(braceletSelected)"
 
         // Do any additional setup after loading the view.
     }
