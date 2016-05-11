@@ -13,8 +13,10 @@ var purchaseMade = false
 import Toucan
 
 class TableViewControllerAllMessages: UITableViewController {
-
+    
     override func viewDidLoad() {
+        
+
         super.viewDidLoad()
 
         self.tableView.rowHeight = 70.0

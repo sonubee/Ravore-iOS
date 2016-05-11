@@ -29,10 +29,12 @@ extension FirstViewController {
             
             braceletKeys[id] = snapshot.key
             
-            if (newBracelet.giverId == UDID || newBracelet.receiverId == UDID){
-                registeredBracelets.append(newBracelet)
-                self.performSegueWithIdentifier("goToAllMessages", sender: self)
-            }
+            //if (newBracelet.giverId == UDID || newBracelet.receiverId == UDID){
+            //    registeredBracelets.append(newBracelet)
+            //    self.performSegueWithIdentifier("goToAllMessages", sender: self)
+            //}
+            
+            
             
             HUD.hide(afterDelay: 1.0)
             count++
@@ -182,6 +184,31 @@ extension FirstViewController {
             Firebase(url:useFirebase+"Users/\(UDID)").childByAppendingPath("os").setValue("ios")
         }
 */
+        
+        let getAllevents = Firebase(url:useFirebase+"Events")
+        
+        getAllevents.observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+        
+            let address = snapshot.value.objectForKey("address") as! String
+            let camping = snapshot.value.objectForKey("camping") as! String
+            let date = snapshot.value.objectForKey("date") as! String
+            let imageUrl = snapshot.value.objectForKey("imageUrl") as! String
+            let lat = snapshot.value.objectForKey("lat") as! Double
+            let location = snapshot.value.objectForKey("location") as! String
+            let longi = snapshot.value.objectForKey("longi") as! Double
+            let name = snapshot.value.objectForKey("name") as! String
+            let price = snapshot.value.objectForKey("price") as! String
+            let ticketsSite = snapshot.value.objectForKey("ticketsSite") as! String
+            let website = snapshot.value.objectForKey("website") as! String
+        
+            let downloadEvents = ObjectEvents(address: address, camping: camping, date: date, imageUrl: imageUrl, lat: lat, location: location, longi: longi, name: name, price: price, ticketsSite: ticketsSite, website: website)
+            
+            allEvents.append(downloadEvents)
+            
+            self.performSegueWithIdentifier("displayEventeSegue", sender: self)
+        
+        })
         
         
     }

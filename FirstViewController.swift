@@ -5,6 +5,8 @@ import Firebase
 import SplunkMint
 
 class FirstViewController: UIViewController, UITextFieldDelegate {
+    
+    
 
     @IBOutlet weak var braceletIdFromLogin: UITextField!
     @IBOutlet weak var howItWorksButton: UIButton!
@@ -14,6 +16,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
         setup()
         downloadObjects()
         howItWorksButton.hidden = true
+        
+       
+        
     }
     
     override func didReceiveMemoryWarning() {

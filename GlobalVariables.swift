@@ -9,6 +9,7 @@ var allPics = [ObjectProfilePic]()
 var allOrders = [ObjectOrders]()
 var allUsers = [ObjectAllUsers]()
 var allTokens = [ObjectToken]()
+var allEvents = [ObjectEvents]()
 
 var braceletSelected=""
 
@@ -38,7 +39,7 @@ var useHeroku = ""
 var useBT = ""
 var useFirebase = ""
 
-let devStatus = "production"
+let devStatus = "sandbox"
 
 
 func getDocumentsURL() -> NSURL {
