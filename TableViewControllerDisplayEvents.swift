@@ -31,7 +31,10 @@ class TableViewControllerDisplayEvents: UITableViewController {
         
         sidebar.actionForIndex[1] = { self.performSegueWithIdentifier("goToOrderBeads", sender: self) }
         
-        sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToBracelets", sender: self) }
+        //sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToBracelets", sender: self) }
+        
+        sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToDetails", sender: self) }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -69,6 +72,14 @@ class TableViewControllerDisplayEvents: UITableViewController {
         cell.eventImage.kf_setImageWithURL(NSURL(string: allEvents[indexPath.row].imageUrl)!)
 
         return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+        self.performSegueWithIdentifier("goToDetails", sender: self)
     }
     
     @IBAction func menuButton(sender: UIBarButtonItem) {
