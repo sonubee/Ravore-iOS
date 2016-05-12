@@ -32,7 +32,9 @@ class TableViewControllerDisplayEvents: UITableViewController {
         
         sidebar.actionForIndex[1] = { self.performSegueWithIdentifier("goToOrderBeads", sender: self) }
         
-        sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToBracelets", sender: self) }
+        //sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToBracelets", sender: self) }
+        
+        sidebar.actionForIndex[2] = { self.performSegueWithIdentifier("goToDetails", sender: self) }
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -124,6 +126,11 @@ class TableViewControllerDisplayEvents: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         //print(self.tableView.indexPathForSelectedRow?.row)
+        
+        var newInt = self.tableView.indexPathForSelectedRow?.row
+        
+        festivalSelected = allEvents[newInt!].name
+      
     }
  
     

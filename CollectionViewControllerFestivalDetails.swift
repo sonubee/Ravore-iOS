@@ -56,37 +56,25 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
         let tempString = allEvents[indexPath.row].name.stringByReplacingOccurrencesOfString(" ", withString: "+")
         
         if indexPath.row == 0 {
-            print("go to map")
             for event in allEvents {
+                print(event.name)
+                print(festivalSelected)
                 if event.name == festivalSelected {
+                    print("Match!!!")
                     UIApplication.sharedApplication().openURL(NSURL(string: "https://www.google.com/search?q=\(tempString)&tbm=isch")!)
                 }
             }
         }
         
-        if indexPath.row == 1 {
-            
-            self.performSegueWithIdentifier("goToMap", sender: self)
-        }
-        
         if indexPath.row == 2 {
             for event in allEvents {
+                print(event.name)
+                print(festivalSelected)
                 if event.name == festivalSelected {
+                    print("Match!!!")
                     UIApplication.sharedApplication().openURL(NSURL(string: event.ticketsSite)!)
                 }
             }
-        }
-        
-        if indexPath.row == 3 {
-            for event in allEvents {
-                if event.name == festivalSelected {
-                    UIApplication.sharedApplication().openURL(NSURL(string: event.website)!)
-                }
-            }
-        }
-        
-        if indexPath.row > 3 {
-            Toast.makeToast("In Development").show()
         }
         
         
@@ -165,21 +153,6 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
         print ("Selected")
     
     }
-    /*
-    // MARK: UICollectionViewDelegateFlowLayout delegate method
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        let cellSpacing = CGFloat(2) //Define the space between each cell
-        let leftRightMargin = CGFloat(20) //If defined in Interface Builder for "Section Insets"
-        let numColumns = CGFloat(3) //The total number of columns you want
-        
-        let totalCellSpace = cellSpacing * (numColumns - 1)
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let width = (screenWidth - leftRightMargin - totalCellSpace) / numColumns
-        let height = CGFloat(110) //whatever height you want
-        
-        return CGSizeMake(width, height);
-    }
- */
+ 
 
 }
