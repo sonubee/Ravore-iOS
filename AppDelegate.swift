@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initializeNotificationServices()
         
+        GMSServices.provideAPIKey("AIzaSyDxUDQj8H6H7412z1AdKVnN00aYdqWqZbk")
+        
         return true
     }
     
