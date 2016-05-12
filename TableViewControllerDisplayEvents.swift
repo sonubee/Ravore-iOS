@@ -124,6 +124,10 @@ class TableViewControllerDisplayEvents: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         //print(self.tableView.indexPathForSelectedRow?.row)
+        
+        var tempInt = self.tableView.indexPathForSelectedRow?.row
+        
+        festivalSelected = allEvents[tempInt!].name
     }
  
     

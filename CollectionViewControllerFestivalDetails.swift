@@ -58,6 +58,8 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
         if indexPath.row == 0 {
             print("go to map")
             for event in allEvents {
+                print(event.name)
+                print(festivalSelected)
                 if event.name == festivalSelected {
                     UIApplication.sharedApplication().openURL(NSURL(string: "https://www.google.com/search?q=\(tempString)&tbm=isch")!)
                 }
