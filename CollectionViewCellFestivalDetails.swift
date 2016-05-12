@@ -10,4 +10,8 @@ import UIKit
 
 class CollectionViewCellFestivalDetails: UICollectionViewCell {
     
+    
+    @IBOutlet weak var imageCollectionCell: UIImageView!
+    @IBOutlet weak var labelCollectionCell: UILabel!
+    
 }

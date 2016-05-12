@@ -11,6 +11,7 @@ import UIKit
 class TableViewControllerDisplayEvents: UITableViewController {
     
     var sidebar: FrostedSidebar!
+    var selectedRow = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,12 +76,7 @@ class TableViewControllerDisplayEvents: UITableViewController {
     }
     
     // MARK: - UICollectionViewDelegate protocol
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
-        self.performSegueWithIdentifier("goToDetails", sender: self)
-    }
+   
     
     @IBAction func menuButton(sender: UIBarButtonItem) {
         sidebar.showInViewController( self, animated: true )
@@ -122,14 +118,21 @@ class TableViewControllerDisplayEvents: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        //print(self.tableView.indexPathForSelectedRow?.row)
+        
+        var newInt = self.tableView.indexPathForSelectedRow?.row
+        
+        festivalSelected = allEvents[newInt!].name
+      
     }
-    */
+ 
+    
 
 }

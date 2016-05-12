@@ -8,18 +8,37 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class CollectionViewControllerFestivalDetails: UICollectionViewController {
+    
+    var logoImages = [UIImage]()
+    var logoText = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logoText.append("Pictures")
+        logoText.append("World Map")
+        logoText.append("Get Tickets")
+        logoText.append("See Website")
+        logoText.append("Festival Map")
+        logoText.append("Get Matched")
+        logoText.append("Parties/Gatherings")
+        logoText.append("Uploads")
+        
+        logoImages.append(UIImage(named: "festival_scaled.jpg")!)
+        logoImages.append(UIImage(named: "map.jpg")!)
+        logoImages.append(UIImage(named: "ticket.png")!)
+        logoImages.append(UIImage(named: "web.png")!)
+        logoImages.append(UIImage(named: "scaled_festival_map.jpg")!)
+        logoImages.append(UIImage(named: "match.jpg")!)
+        logoImages.append(UIImage(named: "pre-party_scaled.jpg")!)
+        logoImages.append(UIImage(named: "uploads.png")!)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
 
         // Do any additional setup after loading the view.
     }
@@ -27,6 +46,39 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
+        //self.performSegueWithIdentifier("goToDetails", sender: self)
+        
+        let tempString = allEvents[indexPath.row].name.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        
+        if indexPath.row == 0 {
+            for event in allEvents {
+                print(event.name)
+                print(festivalSelected)
+                if event.name == festivalSelected {
+                    print("Match!!!")
+                    UIApplication.sharedApplication().openURL(NSURL(string: "https://www.google.com/search?q=\(tempString)&tbm=isch")!)
+                }
+            }
+        }
+        
+        if indexPath.row == 2 {
+            for event in allEvents {
+                print(event.name)
+                print(festivalSelected)
+                if event.name == festivalSelected {
+                    print("Match!!!")
+                    UIApplication.sharedApplication().openURL(NSURL(string: event.ticketsSite)!)
+                }
+            }
+        }
+        
+        
+        
     }
 
     /*
@@ -49,7 +101,7 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return allEvents.count
+        return logoText.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -61,6 +113,10 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         
+        cell.labelCollectionCell.text = logoText[indexPath.row]
+        cell.imageCollectionCell.image = logoImages[indexPath.row]
+        //MyImageview.contentMode = UIViewContentModeScaleAspectFill;
+        //MyImageview.clipsToBounds = YES;
         
     
         return cell
@@ -91,10 +147,12 @@ class CollectionViewControllerFestivalDetails: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
         return false
     }
-
+*/
     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+        
+        print ("Selected")
     
     }
-    */
+ 
 
 }

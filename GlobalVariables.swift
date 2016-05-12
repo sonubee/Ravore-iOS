@@ -12,6 +12,7 @@ var allTokens = [ObjectToken]()
 var allEvents = [ObjectEvents]()
 
 var braceletSelected=""
+var festivalSelected=""
 
 var allIDs = [String]()
 var foundToken = false
